@@ -28,17 +28,25 @@
             background-color: #bdecb6;
             text-align: left;
             float: left;
+            min-width: 205px; /* 添加最小宽度 */
         }
 
         .person-b {
             background-color: #e4e4e4;
             text-align: left;
             float: right;
+            min-width: 205px; /* 添加最小宽度 */
         }
 
         .name {
             font-weight: bold;
             margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -46,36 +54,64 @@
     <div class="chat-container">
         <div class="message person-a">
             <div class="name">明明</div>
-            你好，怎么样了？
+            听说，你是Linux大神。
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
-            嗨！我还好，谢谢。最近有什么新鲜事吗？
+            嗯，大实话。
         </div>
         <div class="message person-a">
             <div class="name">明明</div>
-            我最近开始学习编程了，挺有趣的。
+            解释下PCI
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
-            真的吗？学的是哪种编程语言？
+            你说，王子请解释下PCI
         </div>
         <div class="message person-a">
             <div class="name">明明</div>
-            我正在学习Python，觉得它很容易上手。
+            …… 王子请解释下PCI
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
-            是吗？我也想学编程，不过不知道从哪里开始。
+            PCI（Peripheral Component Interconnect），考虑到你英语水平，我再解释下：Peripheral 是外围设备，Component是组件，Interconnect是相互连接的意思。
         </div>
         <div class="message person-a">
             <div class="name">明明</div>
-            其实挺简单的，我可以推荐一些在线教程给你。
+            再具体点
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
-            太好了，谢谢你！我会试试的。
+            符合PCI标准的，都是PCI设备。显卡、网卡、声卡、硬盘、键鼠等都是PCI设备。PCI标准是人家英特尔（Intel）公司1991年推出的。我也是1991年出生的。
+            <img src="./img/pci_2.jpg" alt="图片">
         </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我把USB网卡插上了。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            lspci
+            <img src="./img/pci_1.JPG" alt="图片">
+            <br/>root@nano:~# lspci<br/>
+00:02.0 PCI bridge: NVIDIA Corporation Device 0faf (rev a1)<br/>
+01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)<br/>
+root@nano:~# <br/>
+            可以看到有两个PCI设备。00:02.0和01:00.0。00:02.0是nvidia公司的设备，一般是显卡。01:00.0是Realtek的Ethernet网卡。
+
+            
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            00:02.0和01:00.0，这两个编号是什么意思？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            你的问题挺多。格式是[总线:插槽.编号]，"00:02.0" 表示PCI总线上第0个插槽的第2个功能，"01:00.0" 表示PCI总线上第1个插槽的第0个功能。
+            <br/>
+            你去拔下来，换个插孔插上，就能明白了。
+        </div>
+        
     </div>
 </body>
 </html>
