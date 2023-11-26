@@ -4,7 +4,7 @@
 Creative Commons Attribution-NonCommercial-NoDerivs license (CC BY-NC-ND 4.0)用户可以复制、发行、展览、表演、放映、广播或通过信息网络传播此作品，但必须按照提交者指定的方式对作品进行署名，不得为商业性目的而使用本作品，不得改变、转变或更改本作品
 
 ## 欢迎光临，客官里面请
-![李智轩作品](./img/index.jpg)
+![李智轩作品](https://github.com/roomsky/linuxos/blob/main/img/index.jpg)
 
 
 ## 目录很长
