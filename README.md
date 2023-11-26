@@ -5,6 +5,12 @@ Creative Commons Attribution-NonCommercial-NoDerivs license (CC BY-NC-ND 4.0)用
 
 ## Content
 
-1.PCI (键盘、鼠标、硬盘、U盘、显卡……)
+1.PCI (什么玩意？键盘、鼠标、硬盘、U盘、显卡……)
 
-2.Udev (拔插PCI设备)
+2.Udev (拔插PCI设备，原来是这个过程)
+
+3.grub UEFI (开机菜单大有玄机)
+
+4.initrd (这里面有什么？居然在kernel前加载！)
+
+5.kernel (谁敢碰这玩意？看完你就敢！)
