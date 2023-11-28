@@ -97,7 +97,7 @@
 00:02.0 PCI bridge: NVIDIA Corporation Device 0faf (rev a1)<br/>
 01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)<br/>
 root@nano:~# <br/>
-            可以看到有两个PCI设备。00:02.0和01:00.0。00:02.0是nvidia公司的设备，一般是显卡。01:00.0是Realtek的Ethernet网卡。
+            可以看到有两个PCI设备。00:02.0和01:00.0。00:02.0是nvidia公司的设备，是显卡。01:00.0是Realtek的Ethernet网卡。
 
             
         </div>
@@ -110,6 +110,27 @@ root@nano:~# <br/>
             你的问题挺多。格式是[总线:插槽.编号]，"00:02.0" 表示PCI总线上第0个插槽的第2个功能，"01:00.0" 表示PCI总线上第1个插槽的第0个功能。
             <br/>
             你去拔下来，换个插孔插上，就能明白了。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            好的，我知道了。谢谢，再见！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            哈哈。你知道什么了？键盘插上就能用，那GPU显卡插上就能用吗？显卡的供电够吗？主板能检测到吗？检测到就能用吗？驱动装了吗？装的版本对吗？
+			<br/>
+			回答我的问题。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            ……
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            1.lspci 能够看到设备，是第一步。说明主板成功检测到了硬件。像GPU显卡，会因为电压、过热等原因掉卡，首先需通过lspci排查是否还在。
+            <br/>
+            2.lspci -vv -s 00:02.0 是第二步。应能看到设备使用了哪个驱动，可以使用哪些驱动。例如，nvidia显卡在kernel中自带的默认驱动是开源nouveau，是无法用在深度学习算法的，需安装nvidia官方闭源驱动。安装完，需确认使用的是nvidia而不是nouveau。
+			
         </div>
         
     </div>
