@@ -129,10 +129,28 @@ root@nano:~# <br/>
             <div class="name">白白</div>
             1.lspci 能够看到设备，是第一步。说明主板成功检测到了硬件。像GPU显卡，会因为电压、过热等原因掉卡，首先需通过lspci排查是否还在。
             <br/>
-            2.lspci -vv -s 00:02.0 是第二步。应能看到设备使用了哪个驱动，可以使用哪些驱动。例如，nvidia显卡在kernel中自带的默认驱动是开源nouveau，是无法用在深度学习算法的，需安装nvidia官方闭源驱动。安装完，需确认使用的是nvidia而不是nouveau。
-			
+            2.lspci -vv -s 00:02.0 是第二步。应能看到设备使用了哪个驱动，可以使用哪些驱动。
         </div>
-        
+		<div class="message person-b">
+            例如，nvidia显卡在kernel中自带的默认驱动是开源nouveau，是无法用在深度学习算法的，需安装nvidia官方闭源驱动。安装完，需确认使用的是nvidia而不是nouveau。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            你说显卡电压不够？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            现实中，遇到过。某厂商的机器，买来后，发现跑深度学习算法，几分钟后就死机，必现。
+        </div>
+		<div class="message person-b">
+		    排查了内存、raid等多项，未找到死机原因。lspci显示掉卡了。
+        </div>
+		<div class="message person-b">
+		    后来把家里的GPU电源拆下来，单独给这两个显卡供电。问题未复现。
+        </div>
+		<div class="message person-b">
+		    因商务原因，该机器无法退换。只能这样外接电源使用。电源200多块钱，机器就能正常跑深度学习算法了，为公司挽回8、9万元的损失。
+        </div>
     </div>
 </body>
 </html>
