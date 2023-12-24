@@ -11,7 +11,7 @@ Creative Commons Attribution-NonCommercial-NoDerivs license (CC BY-NC-ND 4.0)用
 
 ## 目录很长
 
-1.PCI设备 (什么玩意？键盘、鼠标、硬盘、U盘、显卡……)
+1.PCI设备 (什么玩意？键盘、鼠标、硬盘、U盘、显卡……都是PCI设备)
 
 2.Udev (拔插PCI设备，原来是这个过程)
 
