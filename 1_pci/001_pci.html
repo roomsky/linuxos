@@ -194,12 +194,86 @@ root@nano:~# <br/>
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
-            当然可以，通过lspci -s加上设备编号就能查看某个设备的信息了，比如想查看上面nvidia显卡的详细信息，使用lspci -s 00:02.0即可。
+            当然可以，通过lspci -s加上设备编号就能查看某个设备的信息了，比如想查看上面nvidia显卡的详细信息，使用lspci -s 00:02.0即可。像：
+			<br/>1d:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3090]  (型号是RTX 3090 显卡)
+			<br/>Kernel driver in use: nvidia (现在使用的驱动是：nvidia)
+	        <br/>Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia  (内核中的相关驱动)
+
         </div>
         <div class="message person-b">
             还可通过lspci -d命令来查看某个供应商设备的信息。
         </div>
-        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            明白。还有吗？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            讲到这里，pci的基本已经ok了。我想你也累了，后面的休息后再看吧。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            （休息后……）好了，你接着讲吧。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            接下来的，很短，却是很重要的知识点。是“中断”（英文：Interrupt）的概念。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            哦？
+        </div>
+		<div class="message person-b">
+            <div class="name">白白</div>
+            lspci  -vv -s 1c:00.0 有：
+			<br/>Interrupt: pin A routed to IRQ 677
+			<br/>lspci  -vv -s 1d:00.0 有：
+			<br/>Interrupt: pin A routed to IRQ 678
+        </div>
+		<div class="message person-b">
+            IRQ 677、IRQ 678 正是“中断号”。操作系统通过“中断号”来实现和硬件的一一对应，就像每个人的身份证号一样。
+        </div>
+		<div class="message person-b">
+            假设键盘的中断号是205。当你按下一个按键，操作系统发现是205设备发出了电信号，于是调用205设备注册在操作系统内核中的驱动程序，首先执行驱动的上半部（高效低延迟，但如果出错会卡死内核），再执行下半部（相对有延迟）。这样通过键盘的驱动程序就读到了按的具体是哪个键。	
+        </div>
+		<div class="message person-b">
+            然后，操作系统调用显卡的中断号，例如677，将刚才的按键字符传递给677的驱动程序。最终677显卡的驱动程序将字符呈现在屏幕上。
+        </div>
+		<div class="message person-b">
+            PCI设备，大概都是这个思路。如果你后面从事驱动程序开发，会深入接触这一块。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            原来如此。我们用的键盘、鼠标、屏幕、U盘，这些看得见、摸得着的东西都是PCI设备，都是通过“中断号”来互相交流。
+        </div>
+		<div class="message person-b">
+            <div class="name">白白</div>
+            嗯哼。还有网卡、硬盘。不过，内存条不属于PCI的。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            谢谢，学到了。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            那内存条属于什么？
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            那内存条属于什么？
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            那内存条属于什么？
+        </div>
+		<div class="message person-b">
+            <div class="name">白白</div>
+            请使用中断号为205的设备，自己查，结果会显示在677设备上。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            北桥、南桥…… 是我无知了。感谢大佬！
+        </div>
     </div>
 	<hr/>
 		<hr/>
