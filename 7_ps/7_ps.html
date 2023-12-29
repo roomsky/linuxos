@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+           呜呜呜呜
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            咋了
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+           刚才听到他们都在说什么什么ps，我给他们说ps我也会一点，p图嘛
+			然后他们都笑话我呜呜
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+           哈哈 他们说的那个是linux里的ps命令啊
+        </div>
+      
+        <div class="message person-b">
+            <div class="name"></div>
+			想学吗？我教你啊！
+           </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            想！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            首先你得知道每个参数的含义：</br>
+			-e     显示所有进程</br>
+			-f     显示所有字段（UID，PPIP，C，STIME字段）</br>
+			-a     显示一个终端的所有进程</br>
+			-u     显示当前用户进程和内存使用情况</br>
+			-x     显示没有控制终端的进程</br>
+			–sort     按照列名排序</br>
+        </div>
+       
+        <div class="message person-b">
+            <div class="name"></div>
+          ps命令常用的方式有三种：</br>
+          </br>
+          ps -ef：查看所有进程</br>
+          ps -aux：查看所有进程</br>
+          ps -ef | grep tomcat：查看指定进程(| 符号，是个管道符号，表示ps 和 grep 命令同时执行)</br>
+             
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            ok 我试一下  </br>
+			ps -ef：
+        </div>
+		
+		<div class="message person-a">
+		    <div class="name"></div>
+		    <img src="./img/1.png" alt="图片">
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name"></div>
+		    快说一下这都是啥意思
+		</div>
+		
+		
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		   UID：用户ID，即进程的拥有者</br>
+		   PID：进程ID</br>
+		   PPID：父进程ID</br>
+		   C：进程占用的CPU百分比</br>
+		   STIME：进程开始启动时间</br>
+		   TTY：登入者的终端机位置</br>
+		   TIME：进程使用的CPU（运算）时间</br>
+		   CMD：调用进程的命令</br>
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    扫噶！那我执行：ps -aux
+
+		</div>
+		<div class="message person-a">
+		    <div class="name"></div>
+		  
+		 <img src="./img/2.png" alt="图片">
+		</div>
+	
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		  
+		  USER：创建进程的用户</br>
+		  PID：进程ID</br>
+		  %CPU：进程占用CPU的百分比</br>
+		  %MEM：进程占用物理内存的百分比</br>
+		  VSZ：进程占用虚拟内存的大小（单位KB）</br>
+		  RSS：进程占用实际物理内存的大小（单位KB）</br>
+		  TTY：进程在哪个终端运行。</br>
+		  STAT：进程状态</br>
+		  START：进程开始启动的时间</br>
+		  TIME：进程使用的CPU（运算）时间</br>
+		  COMMAND：调用进程的命令</br>
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  好，下面是查看指定进程（grep过滤）。你讲讲？
+		  
+		
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		  ps -ef | grep tomcat 是搜索 tomcat 的进程，如果我没猜错的话。
+		  
+		
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		  恭喜你答对啦 那可想而知，搜索 mysql 的进程：ps -ef | grep mysql
+		  
+		
+		</div>
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		  那进程会占用内存的，我们如何查看进程对应的cpu以及内存呢？
+		
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		  好问题！举个栗子--查看CPU/内存占用率最高的进程</br></br>
+		  查看进程的时候，让进程按照CPU使用率排序，然后展示前10行，就能清晰地看到哪些进程占用的资源比较多。</br></br>
+		  
+		  PS1：head -11 是因为标题也算一行</br>
+		  PS2：+、-号可以调整排序，-pcpu 表示降序，+pcpu 表示升序</br>
+		
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  ps -aux --sort=-pcpu | head -11
+		<img src="./img/3.png" alt="图片">
+		
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  同理，把 -pcpu 换成 -pmem，就能查看内存使用最多的10个进程。</br>
+		  ps -aux --sort=-pmem | head -11</br>
+		<img src="./img/4.png" alt="图片">
+		
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  如果不限制行数，也可以使用 sort 按照指定的列排序</br>
+		
+
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		谁问你了
+		
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  升序：ps -aux | sort -nk 4</br>
+
+		  降序：ps -aux | sort -nk 4 -r</br>
+		
+		
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		想不想知道如何查看指定用户的进程，我数三个数，... 好！我们开讲
+		
+		</div>
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		默数啊！
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+	查看某个用户开启了哪些进程，可以使用 -u 参数指定用户名，比如，查看root用户的进程有哪些：</br>
+		ps -u root -ef</br>
+		<img src="./img/5.png" alt="图片"/>
+
+		</div>
+		
+		
+	<div class="message person-b">
+		    <div class="name"></div>
+	
+	除了 grep 外，还可以配合 more 分页查看进程：ps -ef | more</br>
+		<img src="./img/6.png" alt="图片"/>
+
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		end（完）
+		</div>
+		
+		
+    </div>
+	<hr/>
+		<hr/>
+</body>
+</html>

@@ -11,9 +11,9 @@ Creative Commons Attribution-NonCommercial-NoDerivs license (CC BY-NC-ND 4.0)用
 
 ## 目录很长
 
-1.PCI设备 (什么玩意？键盘、鼠标、硬盘、U盘、显卡……)
+1.PCI设备 (什么玩意？键盘、鼠标、硬盘、U盘、显卡……都是PCI设备) （√）
 
-2.Udev (拔插PCI设备，原来是这个过程)
+2.Udev (拔插PCI设备，原来是这个过程) [udevadm monitor]
 
 3.grub UEFI (开机菜单大有玄机)
 
@@ -25,11 +25,11 @@ Creative Commons Attribution-NonCommercial-NoDerivs license (CC BY-NC-ND 4.0)用
 
 7.ps 进程不多说，因为内容太多。
 
-8.vi 让你成为黑框框编程大神
+8.vi 让你成为黑框框编程大神 （√）
 
 9.tmux 办公利器，反正我天天用。
 
-10.shell 大杀器。大杀器。大杀器。 
+10.shell 大杀器。大杀器。大杀器。 （√）
 
 11.netstat 网络
 
@@ -39,13 +39,13 @@ Creative Commons Attribution-NonCommercial-NoDerivs license (CC BY-NC-ND 4.0)用
 
 14.xorg 管理着每一个窗口、桌面
 
-15.dbus 管理着每一个操作（按键、点击）
+15.dbus 管理着每一个操作（按键、点击）[dbus monitor]
 
 16.top htop 系统CPU 内存 GPU满了？
 
 17.docker 爱学不学
 
-18.fs fstab 文件系统
+18.fs fstab 文件系统 （√）
 
 19.strace 系统调用、进程跟踪
 

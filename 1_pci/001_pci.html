@@ -91,19 +91,17 @@
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
-            lspci
-            <img src="./img/pci_1.JPG" alt="图片">
+            lspci命令
+            <!-- <img src="./img/pci_1.JPG" alt="图片"> -->
             <br/>root@nano:~# lspci<br/>
 00:02.0 PCI bridge: NVIDIA Corporation Device 0faf (rev a1)<br/>
-01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)<br/>
+<!-- 01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)<br/> -->
 root@nano:~# <br/>
-            可以看到有两个PCI设备。00:02.0和01:00.0。00:02.0是nvidia公司的设备，是显卡。01:00.0是Realtek的Ethernet网卡。
-
-            
+            可以看到有一条输出记录。
         </div>
         <div class="message person-a">
             <div class="name">明明</div>
-            00:02.0和01:00.0，这两个编号是什么意思？
+            这个编号00:02.0是什么意思？
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
@@ -111,6 +109,31 @@ root@nano:~# <br/>
             <br/>
             你去拔下来，换个插孔插上，就能明白了。
         </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            这个PCI bridge又是什么意思？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            这是设备的类型或类别。在这个示例中，它是一个PCI桥，用于连接不同PCI总线。<br/>
+            常见的设备类型还有：
+            <ul>
+                <li>VGA compatible controller：显卡或图形控制器，用于管理计算机的图形输出。</li>
+                <li>Ethernet controller：以太网控制器，用于管理网络连接。</li>
+                <li>USB controller：USB控制器，用于管理USB接口和设备。</li>
+                <li>Audio device：音频设备，用于处理声音输入和输出。</li>
+                <li>FireWire controller：FireWire控制器，用于管理FireWire接口和设备。</li>
+            </ul>
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            NVIDIA Corporation Device 我知道，就是英伟达公司设备，那是不是说明这个设备是显卡啊？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            是的，NVIDIA Corporation：这是设备的制造商或厂商，指明了制造这个PCI设备的公司是NVIDIA Corporation。<br/>
+            Device 0faf是设备的型号或ID；(rev a1)则是设备的版本信息。
+        </div>    
 		<div class="message person-a">
             <div class="name">明明</div>
             好的，我知道了。谢谢，再见！
@@ -127,16 +150,16 @@ root@nano:~# <br/>
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
-            1.lspci 能够看到设备，是第一步。说明主板成功检测到了硬件。像GPU显卡，会因为电压、过热等原因掉卡，首先需通过lspci排查是否还在。
-            <br/>
-            2.lspci -vv -s 00:02.0 是第二步。应能看到设备使用了哪个驱动，可以使用哪些驱动。
+            使用lspci命令能够看到设备，这只是是第一步。说明主板成功检测到了硬件。像GPU显卡，会因为电压、过热等原因掉卡，首先需通过lspci排查是否还在。
+            <!-- <br/>
+            2.lspci -vv -s 00:02.0 是第二步。应能看到设备使用了哪个驱动，可以使用哪些驱动。 -->
         </div>
-		<div class="message person-b">
+		<!-- <div class="message person-b">
             例如，nvidia显卡在kernel中自带的默认驱动是开源nouveau，是无法用在深度学习算法的，需安装nvidia官方闭源驱动。安装完，需确认使用的是nvidia而不是nouveau。
-        </div>
+        </div> -->
 		<div class="message person-a">
             <div class="name">明明</div>
-            你说显卡电压不够？
+            等等，你说电压的意思是显卡可能因为电压不够没法正常运行？
         </div>
         <div class="message person-b">
             <div class="name">白白</div>
@@ -159,7 +182,98 @@ root@nano:~# <br/>
             <div class="name">白白</div>
             现实中，也遇到过。nvidia-smi 能看到显卡温度。曾有一台Tesla P40刀片服务器，因发货机器中漏掉配件“导流板”，导致P40显卡温度过高，常常掉卡。安装上后，未复现。
         </div>
-		
+		<div class="message person-b">
+            言归正传，lspci命令只列出了PCI设备的基本信息，lspci命令的不同选项能分别提供不同级别的详细信息。随着选项从-v到-vv再到-vvv的增加，你会获得更多有关PCI设备的详细信息，包括资源分配、中断信息以及设备的寄存器和位字段等。
+        </div>
+        <div class="message person-b">
+            比如上面提到过的，想要检查显卡是否安装了正确版本的驱动，就可以使用lspci -v命令。在每个PCI设备的信息块中，你可以找到一行类似于 "Kernel driver in use" 或 "Kernel modules" 的条目。这一行通常会显示正在使用的驱动程序的名称，以及其版本号。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            等一下，等一下，我的Linux主机上的PCI设备好多啊，用lspci -v命令输出的结果看得我眼花缭乱的。能不能只查看某一个PCI设备的详细信息啊？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            当然可以，通过lspci -s加上设备编号就能查看某个设备的信息了，比如想查看上面nvidia显卡的详细信息，使用lspci -s 00:02.0即可。像：
+			<br/>1d:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3090]  (型号是RTX 3090 显卡)
+			<br/>Kernel driver in use: nvidia (现在使用的驱动是：nvidia)
+	        <br/>Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia  (内核中的相关驱动)
+
+        </div>
+        <div class="message person-b">
+            还可通过lspci -d命令来查看某个供应商设备的信息。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            明白。还有吗？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            讲到这里，pci的基本已经ok了。我想你也累了，后面的休息后再看吧。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            （休息后……）好了，你接着讲吧。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            接下来的，很短，却是很重要的知识点。是“中断”（英文：Interrupt）的概念。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            哦？
+        </div>
+		<div class="message person-b">
+            <div class="name">白白</div>
+            lspci  -vv -s 1c:00.0 有：
+			<br/>Interrupt: pin A routed to IRQ 677
+			<br/>lspci  -vv -s 1d:00.0 有：
+			<br/>Interrupt: pin A routed to IRQ 678
+        </div>
+		<div class="message person-b">
+            IRQ 677、IRQ 678 正是“中断号”。操作系统通过“中断号”来实现和硬件的一一对应，就像每个人的身份证号一样。
+        </div>
+		<div class="message person-b">
+            假设键盘的中断号是205。当你按下一个按键，操作系统发现是205设备发出了电信号，于是调用205设备注册在操作系统内核中的驱动程序，首先执行驱动的上半部（高效低延迟，但如果出错会卡死内核），再执行下半部（相对有延迟）。这样通过键盘的驱动程序就读到了按的具体是哪个键。	
+        </div>
+		<div class="message person-b">
+            然后，操作系统调用显卡的中断号，例如677，将刚才的按键字符传递给677的驱动程序。最终677显卡的驱动程序将字符呈现在屏幕上。
+        </div>
+		<div class="message person-b">
+            PCI设备，大概都是这个思路。如果你后面从事驱动程序开发，会深入接触这一块。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            原来如此。我们用的键盘、鼠标、屏幕、U盘，这些看得见、摸得着的东西都是PCI设备，都是通过“中断号”来互相交流。
+        </div>
+		<div class="message person-b">
+            <div class="name">白白</div>
+            嗯哼。还有网卡、硬盘。不过，内存条不属于PCI的。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            谢谢，学到了。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            那内存条属于什么？
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            那内存条属于什么？
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            那内存条属于什么？
+        </div>
+		<div class="message person-b">
+            <div class="name">白白</div>
+            请使用中断号为205的设备，自己查，结果会显示在677设备上。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            北桥、南桥…… 是我无知了。感谢大佬！
+        </div>
     </div>
 	<hr/>
 		<hr/>
