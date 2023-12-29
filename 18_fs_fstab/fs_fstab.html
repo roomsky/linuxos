@@ -1,0 +1,1181 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+            听说linux里万物皆文件，那文件系统一定很重要吧
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            没错，你说的很对。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            快给我讲讲，快给我讲讲
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            那就听我讲讲吧。文件系统（File System）简称fs。在Linux中，文件系统是一个用于存储和管理数据的层次化结构。它提供了一种机制，用于将数据持久化存储在非易失性存储介质上。在Linux中，这包括了文件的组织、存储、检索以及权限管理。文件系统通过inode标识符来唯一标识每个文件和目录，而目录则是一种特殊的文件，用于存储其他文件的引用。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            说人话，看不懂啊
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            …… 在 Linux 里，文件系统就像书架，而文件和目录则是摆在书架上的书籍。不同的文件系统（比如 ext4, xfs）就像不同类型的书架，它们有着各自的特点和组织方式。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            书架？为什么要书架？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            想象一下你去图书馆找书，看到高山一样的书堆，你怎么找？瞬间痛苦起来了，这该怎么办呢？
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            对啊，该怎么办啊。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            ……把书都整理好放到一起不就行了，那样查找不就方便了。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            哇，你真聪明。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            咳咳，现在我们回到linux，如果没有文件系统的话，每次保存文件时，你都需要记住它的确切存储地址和大小。如果你想读取这个文件，你必须准确地知道这些信息。现在想象一下，如果你有成千上万个文件，这会变得多么复杂！
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那文件系统确实很重要。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            它不仅帮助我们保存文件，还记录了每个文件的名称、位置和大小等信息。这样，当我们需要找到一个文件时，只需要知道它的名字，文件系统就会帮我们找到它的确切位置。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那么神奇吗？不行，我要切身体会去了
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            唉，等等，你了解文件系统的结构了吗？你就跑，给我回来！！
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            。。。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            文件系统上的数据类型，在“逻辑”上可以分成数据和元数据。<br>
+            数据：用户创建的文档、图片、视频和程序等数据内容。<br>
+            元数据：文件的名称、文件在外部存储器中的位置和文件大小等辅助信息<br><br>
+            元数据又可分为以下几种。<br>
+            种类：用于判断文件是保存数据的普通文件，还是目录或其他类型的文件的信息。<br>
+            时间信息：包括文件的创建时间、最后一次访问的时间，以及最后一次修改的时间。<br>
+            权限信息：表明该文件允许哪些用户访问。<br><br>
+            “物理”上可以分成inode（索引节点） block（数据块）和superblock（超级块）<br>
+            &emsp;inode（索引节点）<br>
+            &emsp;&emsp;存储文件元数据<br>
+            &emsp;&emsp;不存储文件名和数据<br>
+            &emsp;block（数据块）<br>
+            &emsp;&emsp;存储文件的实际数据<br>
+            &emsp;&emsp;文件系统的基本存储单位<br>
+            &emsp;superblock（超级块）<br>
+            &emsp;&emsp;存储有关整个文件系统的信息
+    
+        </div>                
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            Linux有那么多文件系统，我在转移文件的时候不会出现问题吗？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            咱们完全不用担心，讲到这里不得不提到一文件系统不一致时遇到的问题了
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            当你转移文件时，突然断电，才转移一半这怎么办？那文件地址什么的不都乱了吗？唉~，无所谓日志和写时复制会出手 日志文件系统在修改文件前会记录详细信息。这样，断电时，系统可根据日志“重放”未完成的操作，防止不一致。<br>而写时复制在修改数据前会先复制。这意味着，即使发生断电，还有一个未受损的数据副本可用于恢复或完成写入。这些技术确保数据安全，即使在处理多种文件系统时也能保护我们的文件。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            linux都是文件，那文件都有哪些类型啊
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            那就有点多了，在Linux中，不同类型的文件有其独特的识别方式和用途。这些类型主要包括：<br>普通文件：<br>包括文本文件和二进制文件。<br>文本文件：包含人类可读的字符，比如.txt、.doc等。<br>二进制文件：包含编码后的数据，通常需要特定的程序来解读，比如可执行文件、图像文件等。<br>目录文件：<br>用于存储和组织其他文件和目录的信息。<br>相当于文件系统中的“书架”，帮助管理文件的结构。<br>特殊文件类型：<br>符号链接：类似快捷方式，指向其他文件或目录的引用。<br>设备文件：<br>块设备：如硬盘，适用于存储大量数据。<br>字符设备：如键盘，适用于处理字符流数据。<br>管道文件：用于进程间通信，像是数据传输的“管道”。<br>套接字文件：用于网络通信，如进行客户端和服务器之间的数据交换。
+        </div>  
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            真多啊……
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            这才刚开始呢 之后还有好多命令
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            ls命令：列出文件和目录
+            <p>使用ls可以查看当前目录下的文件和文件夹。其基本语法如下：</p>
+            <p><code>ls [options] [file or directory]</code></p>
+            <p>常用选项：</p>
+            <ul>
+                <li>ls -l提供详细列表，包括文件权限、所有者、大小和最后修改时间。</li>
+                <li>ls -a显示隐藏文件（以.开头的文件）。</li>
+                <li>-l 和 -a能混合使用 先后顺序无所谓。</li>
+            </ul>
+            <p>模拟使用示例</p>
+            <p><img src="./img/ls.jpg" alt="图片ls.Jpg" width="300"></p>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            cp命令：复制文件或目录
+            <p>用于复制文件。其基本语法如下：<code>cp [options] source destination</code></p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-r：递归复制，用于复制目录及其所有子目录和文件。</li>
+                <li>-i：交互式复制，在覆盖前询问用户。</li>
+                <li>-v：详细模式，显示复制的文件详情。</li>
+            </ul>
+            <p>模拟使用示例：</p>
+            <p>复制文件到另一个文件</p>
+            <p><code>$ cp test.txt test1.txt</code></p>
+            <p>复制 test.txt 并将副本命名为 test1.txt。</p>
+            <p>(会覆盖原来的copy)</p>
+            <p>复制文件到目录</p>
+            <p><code>$ cp test.txt 1 </code></p>
+            <p>将 test.txt 复制到 ./1 目录下。</p>
+            <p><img src="./img/cp_1.jpg" alt="cp_1" width="300"></p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那我想复制到目录并重命名
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            要求还挺高
+            <p><img src="./img/cp_2.jpg" alt="cp_2" width="320"></p>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            递归复制整个目录
+            <p><code>$ cp -r 2 1</code></p>
+            <p>（注意别忘了中间有个空格）</p>
+            <p>将 ./2目录及其所有内容复制到 ./1 目录下。</p>
+            <p><img src="./img/cp_3.jpg" alt="cp_3"></p>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            交互式复制文件
+            <p><code>$ cp -i test.txt 1/test.txt</code></p>
+            <p>如果 1/test.txt 已存在，cp 会询问是否覆盖。（y/n）</p>
+            <p><img src="./img/cp_4.jpg" alt="cp_4" ></p>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            详细模式复制文件
+            <p><code>$ cp -v test.txt /1/2/1/2</code></p>
+            <p>显示复制 test.txt 到 /1/2/1/2 目录的详细信息。</p>
+            <p><img src="./img/cp_5.jpg" alt="cp_5"></p>
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我还想移动文件呢
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            mv命令：移动或重命名文件或目录
+            <p>mv 命令的基本功能是移动文件或目录，但它也常用于重命名。其基本语法如下：</p>
+            <p><code>mv [options] source destination</code></p>
+            <p>source 是要移动或重命名的文件或目录。</p>
+            <p>destination 是移动的目标路径，或者是新的文件名。</p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-i：交互式移动，在覆盖前询问用户。</li>
+                <li>-v：详细模式，显示移动的文件详情。</li>
+                <li>-n：不覆盖已存在的目标文件。</li>
+            </ul>
+            <p>模拟使用示例：</p>
+            <p>移动文件</p>
+            <p><code>$ mv file1.txt /home/user/Documents/</code></p>
+            <p>将 file1.txt 移动到 /home/user/Documents/ 目录下。</p>
+            <p>重命名文件</p>
+            <p><code>$ mv oldname.txt newname.txt</code></p>
+            <p>将 oldname.txt 重命名为 newname.txt。</p>
+            <p>移动多个文件到一个目录</p>
+            <p><code>$ mv file1.txt file2.txt /home/user/Documents/</code></p>
+            <p>同时移动 file1.txt 和 file2.txt 到指定目录。</p>
+            <p>交互式移动文件</p>
+            <p><code>$ mv -i source.txt /home/user/Documents/</code></p>
+            <p>如果目标目录中已存在 source.txt，则在覆盖前会询问用户。</p>
+            <p>详细模式移动文件</p>
+            <p><code>$ mv -v photos/ /home/user/Pictures/</code></p>
+            <p>显示移动 photos/ 目录到 /home/user/Pictures/ 的详细信息。</p>
+            <p>不覆盖目标文件</p>
+            <p><code>$ mv -n file.txt /home/user/Documents/</code></p>
+            <p>如果 /home/user/Documents/ 中已存在 file.txt，则不会执行移动。</p>
+            <p><img src="./img/mv.jpg" alt="mv.jpg"></p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我还想删除文件
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            rm命令：删除文件或目录
+            <p>了解和使用 rm 需要小心，因为它删除的文件通常无法恢复。</p>
+            <p>rm 命令用于删除一个或多个文件或目录。其基本语法如下：</p>
+            <p><code>rm [options] file...</code></p>
+            <p>file 可以是一个或多个文件或目录的路径。</p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-r 或 -R：递归删除，用于删除目录及其内容。</li>
+                <li>-f：强制删除，忽略不存在的文件，不提示。</li>
+                <li>-i：交互式删除，在删除前询问用户。</li>
+            </ul>
+            <p>模拟使用示例：</p>
+            <p>删除单个文件</p>
+            <p><code>$ rm file.txt</code></p>
+            <p>删除名为 file.txt 的文件。</p>
+            <p>交互式删除文件</p>
+            <p><code>$ rm -i file.txt</code></p>
+            <p>删除文件前会询问用户是否确认删除。</p>
+            <p>强制删除文件</p>
+            <p><code>$ rm -f file.txt</code></p>
+            <p>即使文件不存在也不会显示错误信息。</p>
+            <p>删除多个文件</p>
+            <p><code>$ rm file1.txt file2.txt file3.txt</code></p>
+            <p>同时删除 file1.txt、file2.txt 和 file3.txt。</p>
+            <p>递归删除目录</p>
+            <p><code>$ rm -r my_directory</code></p>
+            <p>删除 my_directory 及其包含的所有子目录和文件。</p>
+            <p>强制递归删除目录</p>
+            <p><code>$ rm -rf my_directory</code></p>
+            <p>强制删除目录及其内容，不显示任何提示。</p>
+            <p><img src="./img/rm.jpg" alt="rm"></p>
+        </div>
+        <div class="message person-a">
+                <div class="name">明明</div>
+                创建文件（逐渐麻木）
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            touch命令：创建或更新文件
+            <p>touch 命令是 Linux 和 Unix 系统中用来创建空文件或者更新文件的时间戳的一个简单工具。它是文件操作中常用的命令之一，主要用于快速创建空白文件或设置文件的访问和修改时间戳。</p>
+            <p>touch 命令详解</p>
+            <p>基本用法很简单：<code>touch [options] file...</code></p>
+            <p>file 表示你想要创建或修改时间戳的文件名。</p>
+            <p>如果指定的文件不存在，touch 将创建一个新的空文件。</p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-a：只更改文件的访问时间。</li>
+                <li>-m：只更改文件的修改时间。</li>
+                <li>-c：如果文件不存在，不创建新文件。</li>
+                <li>-t：跟一个指定的时间值，用于设置文件的访问和修改时间。时间格式通常为 [YYMMDDhhmm]。</li>
+            </ul>
+            <p>模拟使用示例：</p>
+            <p>创建一个新文件<code>$ touch newfile.txt</code>如果 newfile.txt 不存在，touch 会创建这个空文件。</p>
+            <p>查看文件时间戳可以用stat命令</p>
+            <p>更新现有文件的时间戳<code>$ touch existingfile.txt</code>更新 existingfile.txt 的访问和修改时间为当前时间。</p>
+            <p>只更改文件的访问时间<code>$ touch -a file.txt</code>只更新 file.txt 的访问时间。</p>
+            <p>只更改文件的修改时间<code>$ touch -m file.txt</code>只更新 file.txt 的修改时间。</p>
+            <p>设置特定的时间戳<code>$ touch -t 202101010830 file.txt</code>将 file.txt 的访问和修改时间设置为 2021 年 1 月 1 日 08:30。</p>
+            <p><img src="./img/touch_1.jpg" alt="touch_1"></p>
+            <p><img src="./img/touch_2.jpg" alt="touch_2"></p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            目录
+        </div>
+        
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            mkdir 命令
+            <p>基本功能：mkdir（make directory的缩写）命令用于在Linux中创建新的目录。这是文件系统管理中最基本的操作之一。</p>
+            <p>基本语法：mkdir [options] directory_name</p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-p: 创建多级目录。如果所指定的目录的上级目录不存在，mkdir -p 会连同上级目录一起创建。</li>
+                <li>-m 或 --mode: 设置新目录的权限。你可以指定如 755 或 644 这样的权限设置。</li>
+            </ul>
+            <p>使用情景：创建一个或多个新目录；创建一个目录结构，例如在编写脚本或初始化项目结构时。</p>
+            <p>模拟使用示例：</p>
+            <p>创建单个目录<code>$ mkdir new_directory</code>创建一个名为 new_directory 的目录。</p>
+            <p>创建多个目录<code>$ mkdir dir1 dir2 dir3</code>同时创建三个目录 dir1, dir2, dir3。</p>
+            <p>创建多级目录<code>$ mkdir -p project/{bin,src,obj}</code>在 project 目录下创建 bin, src, obj 三个子目录。如果 project 目录不存在，也会被创建。</p>
+            <p>创建带有特定权限的目录<code>$ mkdir -m 755 secure_dir</code>创建一个名为 secure_dir 的目录，并设置其权限为 755。</p>
+            <p><img src="./img/mkdir.jpg" alt="mkdir"></p>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            创建了文件是时候查看了
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            到了有趣的部分了吗？
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            前面的不有趣吗？
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            。。。有趣，有趣
+        </div>
+        
+        <!-- 接下来是关于 cat 命令的描述，将在下一个回复中继续提供 -->
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            文件内容操作 cat 命令
+            <p>基本功能：cat（concatenate的缩写）用于在Linux终端中显示整个文件的内容。它通常用于查看较短的文本文件。</p>
+            <p>基本语法：<code>cat [options] [file...]</code></p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-n: 在每一行的开头显示行号。</li>
+                <li>-b: 只为非空输出行编号。</li>
+                <li>-S或 --squeeze-blank：当遇到有连续两行以上的空白行，代换为一行的空白行。</li>
+                <li>-E 或 --show-ends : 在每行结束处显示 $。</li>
+                <li>-T 或 --show-tabs: 将 TAB 字符显示为 ^I。</li>
+            </ul>
+            <p>使用情景：</p>
+            <ul>
+                <li>快速查看或合并小文件的内容。</li>
+                <li>将几个文件的内容合并输出。</li>
+            </ul>
+            <p>使用示例：</p>
+            <p><code>$ cat file.txt</code></p>
+            <p><code>$ cat -n file.txt</code></p>
+            <p><code>$ cat file1.txt file2.txt > merged.txt</code></p>
+            <p><img src="./img/cat_1.jpg" alt="Cat_1"><img src="./img/cat_2.jpg" alt="cat_2"></p>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            重定向符
+            <p>默认情况下，标准输入是键盘，标准输出是终端。</p>
+            <p><strong>重定向：</strong>重新指定命令的输入和输出。</p>
+            <p><strong>输出重定向：</strong>将原本送往终端的输出送往其他地方。</p>
+            <ul>
+                <li><code>&gt;file</code>：标准输出重定向到文件——覆盖。</li>
+                <li><code>&gt;&gt;file</code>：标准输出重定向到文件——追加。</li>
+                <li><code>2&gt;file</code>：标准错误重定向到文件——覆盖。</li>
+                <li><code>2&gt;&gt;file</code>：标准错误重定向到文件——追加。</li>
+                <li><code>2&gt;/dev/null</code>：标准错误重定向到空设备。</li>
+                <li><code>&amp;&gt;file</code>：标准输出和标准错误重定向到文件——覆盖。</li>
+                <li><code>&gt;&gt;file 2&gt;&amp;1</code>  <code>&amp;&gt;&gt;file</code>：标准输出和标准错误重定向到文件——追加。</li>
+            </ul>
+            <p><strong>输入重定向：</strong>将原本来自键盘的输入切换到来自其他地方。</p>
+            <ul>
+                <li><code>&lt;</code>  <code>&lt;&lt;</code></li>
+            </ul>
+            <p>Linux 中有三个系统文件描述符:</p>
+            <ul>
+                <li>0: 标准输入。</li>
+                <li>1: 标准输出。</li>
+                <li>2: 标准错误输出。</li>
+            </ul>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            怎么样有趣了吗？
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            这个好玩
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>more</strong> 类似于 cat, 根据窗口的大小进行分页显示，能提示文件的百分比。最基本的指令就是按空格（space）就往下一页显示，仅能向前移动，却不能向后移动。</p>
+            <p><strong>less</strong> 与 more 类似，但使用 less 可以随意浏览文件，用空格显示下一页，按键 b 显示上一页（back），按 Q 键退出 less 命令，而且 less 在查看之前不会加载整个文件。</p>
+            <ul>
+                <li>-e 文件内容显示完毕后，自动退出</li>
+                <li>-f 强制显示文件</li>
+                <li>-N 每一行行首显示行号</li>
+                <li>-s 将连续多个空行压缩成一行显示</li>
+            </ul>
+            <p>操作指令：</p>
+            <ul>
+                <li>回车键：向下移动一行</li>
+                <li>y：向上移动一行</li>
+                <li>空格键：向下滚动一屏</li>
+                <li>b：向上滚动一屏</li>
+                <li>d：向下滚动半屏</li>
+                <li>u：向上滚动半屏</li>
+                <li>w：可以指定显示哪行开始显示</li>
+                <li>g：跳到第一行</li>
+                <li>G：跳到最后一行</li>
+            </ul>
+            <p><strong>head</strong> 从文件的开头显示内容，默认情况下 head 命令只显示前10行的内容。</p>
+            <p><code>head -n 行数值 文件名</code></p>
+            <p><strong>tail</strong> 显示文件的最后 number 行内容，不指定文件时，作为输入信息进行处理。常用于查看日志文件。</p>
+            <p><code>tail -n 行数值 文件名</code></p>
+        </div>
+        
+        
+        
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>通配符</strong></p>
+            <p>在Linux系统中，允许使用特殊字符来同时引用多个文件名，这些特殊字符被称为通配符。</p>
+            <ul>
+                <li><strong>通配符 *</strong>：可以代表文件名中的任意字符或字符串，但不能与句点打头的文件名匹配。</li>
+                <li><strong>通配符 ?</strong>：可以代表文件名中的任意一个字符。</li>
+            </ul>
+            <p>其他选项：</p>
+            <ul>
+                <li><code>-name name</code>，<code>-iname name</code>：文件名称符合 name 的文件。iname 会忽略大小写。</li>
+                <li><code>-type d</code>：文件类型是目录的文件。</li>
+                <ul>
+                    <li>f: 普通文件</li>
+                    <li>d: 目录文件</li>
+                    <li>l: 符号链接文件</li>
+                    <li>s: 套接字文件</li>
+                    <li>b: 块设备文件</li>
+                    <li>c: 字符设备文件</li>
+                    <li>p: 管道文件</li>
+                </ul>
+                <li><code>-size [+|-]n</code>：文件大小是 n。单位：b块（512字节），c字节，w字（2字节），k，M，G。</li>
+                <li><code>-path</code>：根据路径查找文件。</li>
+            </ul>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>which 命令</strong></p>
+            <p>功能：查找二进制命令所在位置和别名。</p>
+            <p>which 只会在环境变量 <code>$PATH</code> 设置的目录里查找符合条件的命令。</p>
+            <p>英文原意：shows the full path of (shell) commands。</p>
+            <p>所在路径：<code>/usr/bin/which</code></p>
+            <p>执行权限：所有用户。</p>
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>whereis 命令</strong></p>
+            <p>功能：查找指令的二进制程序、源代码文件和 man 手册页等相关文件的路径。</p>
+            <p>所在路径：<code>/usr/bin/whereis</code></p>
+            <p>执行权限：所有用户。</p>
+            <ul>
+                <li>-b：只查找二进制文件。</li>
+                <li>-B &lt;目录&gt;：只在设置的目录下查找二进制文件。</li>
+                <li>-m：只查找说明文件。</li>
+                <li>-M &lt;目录&gt;：只在设置的目录下查找说明文件。</li>
+                <li>-s：只查找原始代码文件。</li>
+                <li>-S &lt;目录&gt;：只在设置的目录下查找原始代码文件。</li>
+            </ul>
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>        
+            <p><strong>cut 命令</strong></p>
+            <p>功能：从文件的每一行剪切字节、字符和字段并将这些字节、字符和字段写至标准输出。</p>
+            <p>cut 命令用于按"列"提取文本内容。</p>
+            <p>命令格式：<code>cut [选项] [文件名]</code></p>
+            <ul>
+                <li>-b ：以字节为单位进行分割。</li>
+                <li>-c ：以字符为单位进行分割。</li>
+                <li>-d ：自定义分隔符，默认为制表符。</li>
+                <li>-f ：与 -d 一起使用，指定显示哪个域（列）。</li>
+            </ul>
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>sort 命令</strong></p>
+            <p>功能：针对文本文件的内容，以行为单位进行再排序。</p>
+            <p>命令格式：<code>sort [选项] [文件名称]</code></p>
+            <ul>
+                <li>-n ：依照数值的大小排序。</li>
+                <li>-u ：意味着是唯一的(unique)，输出的结果是去完重了的。</li>
+                <li>-o &lt;输出文件&gt; ：将排序后的结果存入指定的文件。</li>
+                <li>-r ：以相反的顺序来排序。</li>
+                <li>-t &lt;分隔字符&gt; ：指定排序时所用的栏位分隔字符。</li>
+                <li>-k number ：按指定的列进行排序。</li>
+            </ul>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>grep 命令</strong></p>
+            <p>基本功能：grep 用于在文件中搜索包含指定文本的行。它是文本搜索工具，广泛用于搜索文件内容。</p>
+            <p>语法：<code>grep [options] pattern [file...]</code></p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-i: 忽略大小写。</li>
+                <li>-r 或 -R: 递归搜索所有文件。</li>
+                <li>-n: 显示匹配行的行号。</li>
+                <li>-v: 显示不匹配的行。</li>
+            </ul>
+            <p>使用情景：在文件或文件夹中搜索特定文本。从日志文件中提取特定信息。</p>
+            <p>使用示例：</p>
+            <p><code>$ grep "specific text" file.txt</code></p>
+            <p><code>$ grep -r "pattern" /path/to/directory/</code></p>
+            <p><code>$ grep -n "error" log.txt</code></p>
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>find 命令</strong></p>
+            <p>基本功能：find 用于在文件系统中搜索文件和目录。它根据各种条件搜索，如文件名、大小、修改日期等。</p>
+            <p>语法：<code>find [path...] [options] [expression]</code></p>
+            <p>常用选项：</p>
+            <ul>
+                <li>-name: 按文件名搜索。</li>
+                <li>-type: 指定类型搜索（如 f 表示文件，d 表示目录）。</li>
+                <li>-size: 根据文件大小搜索。</li>
+                <li>-exec: 对搜索结果执行指定命令。</li>
+            </ul>
+            <p>使用情景：查找特定名称或类型的文件。删除特定条件的文件（例如，超过特定大小的文件）。</p>
+            <p>使用示例：</p>
+            <p><code>$ find /home/user -name "*.txt"</code></p>
+            <p><code>$ find . -type f -size +2M</code></p>
+            <p><code>$ find /var/log -name "*.log" -exec grep "error" {} \;</code></p>
+            <p>这些命令是Linux用户查找文件和目录，以及搜索特定内容的强大工具。无论是处理大量数据，还是定位特定文件或信息，grep 和 find 都是非常有用的命令。掌握它们将大大提高您在Linux环境下的工作效率。</p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            针不戳。终于讲完了!
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            god damn it~学完了怎么有些文件不让我编辑和删除呢
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            这其实和文件的权限和所有权有关，fool~（帅哥）
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            权限和所有权？这是怎么回事？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            每个文件和目录在Linux中都有相应的权限设置，决定了谁能读、写或执行这个文件。另外，文件的所有者和所属组也会影响这些权限。<br><img src="./img/chown.jpg" alt="图片" width ="300"><br>我上面给你演示了怎么更改所有者和所属组，你已经学会了，现在去写数据库管理系统软件吧
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            6
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            。。。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            这还有其他操作吧，你都没用选项，那个杠（-）呢？还有你那sudo又是什么？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            啊，对了，他也有很多选项供你使用
+            <ul>
+                <li>-c: 若文件拥有者确实已经更改，才显示其更改动作</li>
+                <li>-f: 若该文件拥有者无法被更改也不显示错误信息</li>
+                <li>-v: 显示拥有者变更的信息</li>
+                <li>-R: 对目前目录下的所有文件与子目录进行相同的拥有者变更（即以递回的方式逐个变更）</li>
+            </ul>
+            至于那个sudo，你要知道Linux系统只允许文件的所有者或超级用户改变文件的读写权限。所以我要越级上报就要用到sudo了
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            ？我创建的文件我还不能改了？sun of a beach
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            别急，还有个命令
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            哎呀~哎呀~ it’s top-notch
+        </div>
+        
+
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            川剧变脸是吧
+            <p><strong>chgrp 命令</strong></p>
+            <p>功能：用于变更文件或目录的所属组。</p>
+            <p>英文全拼：change group。</p>
+            <p>命令格式：<code>chgrp [选项] 属组 文件或目录名</code></p>
+            <p>执行权限：文件的所有者并且是该组成员或者是超级用户root。</p>
+            <ul>
+                <li>-c: 效果类似“-v”参数，但仅回报更改的部分。</li>
+                <li>-f: 不显示错误信息。</li>
+                <li>-v: 显示指令执行过程。</li>
+                <li>-R：递归处理，将指定目录下的所有文件及子目录一并处理。</li>
+            </ul>
+            <p><strong>chmod 命令</strong></p>
+            <p>功能：变更文件/目录权限。</p>
+            <p>命令格式：<code>chmod [参数] 文件或目录名</code></p>
+            <p>说明：参数部分可以使用符号表达式（如 a+w），也可以使用八进制数。一般情况下，只有文件的所有者或者超级用户（root）才能使用 chmod 命令更改文件的权限。</p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            这个755又是啥？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            数字法：把文件的三种权限分别用数字表示，把每种用户的三种权限对应的数字相加，就会得到3个从0到7的数字。
+            <p><img src="./img/lujing.jpg" alt="权限示例"></p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            这些权限都太简单了吧？没有挑战性。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            ？好，那么好。
+            <p>你来解释下SUID（Set User ID）、SGID（Set Group ID）和Sticky Bit时，这些是与文件或目录相关的特殊权限标志。</p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            啊？这都什么啊？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            既然你诚心诚意的发问了，那我。。。。。
+        </div>
+        
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>SUID（Set User ID）:</strong></p>
+            <p>含义： 当文件具有SUID标志时，它在执行时将具有文件所有者的权限，而不是执行者的权限。</p>
+            <p>用途： 通常用于一些需要在执行时以文件所有者的身份运行的程序，例如一些系统命令。</p>
+            <p>设置：<code>chmod u+s filename</code></p>
+            <p><strong>SGID（Set Group ID）:</strong></p>
+            <p>含义： 当文件具有SGID标志时，它在执行时将具有文件组的权限，而不是执行者的组权限。</p>
+            <p>用途： 通常用于共享目录，确保新创建的文件属于目录的组，而不是创建者的组。</p>
+            <p>设置 SGID：<code>chmod g+s directory</code></p>
+            <p><strong>Sticky Bit:</strong></p>
+            <p>含义： 当目录具有Sticky Bit时，只有文件所有者才能删除自己的文件，即使其他人对该目录有写权限。</p>
+            <p>用途： 通常用于临时目录，确保只有文件所有者能够删除其文件。</p>
+            <p>设置 Sticky Bit：<code>chmod +t directory</code></p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我要简单的数字表达式。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            是的，可以使用数字表达式来设置SUID、SGID和Sticky Bit。在数字表达式中，这些特殊权限分别用数字4、2和1来表示。特殊权限要写在在普通权限的最左边表示。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我知道一个新的东西，访问控制列表（ACL）。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            哦~你还知道这个。
+        </div>
+        
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            <p>ACL就像是给你家的每个人设定特定的访问规则。使用setfacl和getfacl，你可以非常细致地控制每个人的访问权限。</p>
+            <p>在ACL中，你可以为每个用户或用户组分别设置权限，而不仅仅是三个基本的权限集（读、写、执行）。这使得你能够更加细致地控制文件和目录的访问。</p>
+            <p>在Linux系统中，getfacl 和 setfacl 是用于查看和设置ACL的命令。</p>
+            <p><code># 查看文件ACL getfacl filename</code></p>
+            <p><code># 设置文件ACL setfacl -m u:username:rw- filename</code></p>
+            <p>其中 u:username:rw- 表示为特定用户（username）授予读和写权限。 </p>
+        </div>
+
+        
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            不得了不得了啊，明明。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            你不会还藏着掖着吧，是不是有什么好东西没告诉我。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            ..。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那ext4呢？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            ext4是“第四代扩展文件系统”的缩写。ext4继承了ext3的稳定性和可靠性，ext4支持最大1EB（Exabyte，即1百万TB）的文件系统大小，还有最大1TB的单个文件大小。ext4有一个最显著的特性是延迟分配：它允许系统延迟决定文件数据的物理存储位置，从而优化磁盘空间的使用和减少碎片。ext4还采用了一种新的块分配策略，以减少碎片并提高磁盘I/O效率。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我开始不理解了，延迟分配是怎么做到的啊？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            在传统的文件系统中，当数据写入请求发生时，系统会立即分配磁盘空间来存储这些数据。有时会导致磁盘空间利用不够高效，尤其是在处理大量小文件时。延迟分配这种模式下，当数据写入请求发生时，ext4并不立即分配磁盘空间，它会等待，收集更多的写入请求，然后一次性地、更高效地分配磁盘空间。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            哦~这下听懂了。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            还有，ext4改进了块分配算法。但其实就像是优化了你的硬盘的存取方式。还有日志功能，ext4的日志功能刚好可以规避延迟分配的风险：日志功能确保了即使在发生崩溃的情况下，未写入磁盘的数据也能够得到恢复。此外ext4还加强了inode的功能，inode现在更大了，可以存储更多的信息。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那么接下来是……xfs。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            XFS最初是为了高性能计算和大规模数据处理而设计的。它早在90年代就被开发出来，那个时候，我们还在用的是Windows 95呢！所以，XFS的设计理念非常超前，它是为了应对大规模、高吞吐量的数据需求而生的。在处理大文件方面，XFS和ext4都表现出色。不过，XFS在大文件处理上更有优势，特别是在高性能的应用场景下。这是因为XFS使用了一种不同于ext4的文件分配策略，这些策略专为高效率和大容量设计。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            等等，你在说什么啊……“XFS的文件分配策略”不同到哪里了？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            XFS采用的是基于范围的分配（extent-based allocation）策略，尽可能将文件的数据保持在一段连续的磁盘空间内。这种做法对于处理大文件特别有效，因为它减少了读写头的移动次数，从而提升了访问效率。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            轮到Btrfs文件系统了吗？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            Btrfs引入了一些更先进的特性，特别是在多物理卷管理、快照、RAID支持以及数据损坏检测和恢复方面。它允许在多个外部存储器或分区上创建一个统一的存储池，然后在这个存储池上创建可以被挂载的子卷。这种方法类似于传统的逻辑卷管理器（LVM），但与LVM不同的是，Btrfs将文件系统和逻辑卷管理功能结合在一起。这意味着，你可以轻松地向现有的Btrfs文件系统添加或删除存储设备，而无需调整文件系统的大小。Btrfs还在文件系统级别提供了对多种RAID级别的支持，能够提供更高的数据冗余和容错能力。通过使用校验和，Btrfs能够检测和修复损坏的数据，提供了更全面的数据完整性保护。配置和管理Btrfs也与ext4和XFS有所不同，提供了更多高级功能，比如在线文件系统大小调整、子卷管理以及快照和克隆操作。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            好，我要去实践出真知了，拜拜（two years later）。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            嗨嗨嗨，我又来了奥
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            欢迎光临~
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我现在有块磁盘，但是我该怎么访问？
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            你是想问挂载？
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            挂载？
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            唉 先给你讲磁盘的分区 后面再说挂载的事
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>Linux中的磁盘分区</strong></p>
+            <p><img src="./img/fenqv.jpg" alt="分区示例"></p>
+            <p>创建分区是有限制的，我们可以把扩展分区分成若干个逻辑独立的部分，这样就可以绕开限制了</p>
+            <p>（1）只创建主分区：</p>
+            <p>主分区<=4</p>
+            <p>（2）既创建主分区，又创建扩展分区：</p>
+            <p>主分区 + 扩展分区<=4</p>
+
+            <p>把磁盘空间分成若干个逻辑独立的部分。</p>   
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>Linux存储设备的命名</strong></p>
+            <p>硬盘和分区被抽象成文件，有特定的命名规则</p>
+            <p>Linux 分区名称规则 ---> /dev/xxyN</p>
+            <ul>
+                <li>/dev/ --> 设备文件所在的目录名</li>
+                <li>Xx --> 硬盘的类型，通常是hd（ide接口磁盘）或sd（scsi接口磁盘）</li>
+                <li>Y --> 同一类型硬盘的编号，用小写字母表示，如/dev/sda、/dev/sdb</li>
+                <li>M --> 硬盘上分区的编号，用数字表示，如/dev/sda1、/dev/sdb2</li>
+            </ul>
+            <p>1、2、3、4表示主分区或扩展分区；逻辑分区从5开始。</p>
+            <p>磁盘接口类型：</p>
+            <ul>
+                <li>（1）IDE接口：在Linux中，标识为/dev/hd</li>
+                <li>（2）SATA接口：在Linux中，标识为/dev/sd</li>
+                <li>（3）SCSI接口：在Linux中，标识为/dev/sd</li>
+            </ul>
+            
+            <p><code>lsblk -p</code> 列出系统所有磁盘及磁盘上的分区</p>
+        
+            <p><strong>lsblk -p</strong>是lsblk命令的一个选项，用于显示块设备的信息，并且输出的路径以完整的设备路径形式表示。通常，lsblk默认使用缩写的设备路径，而使用-p选项将显示完整的设备路径。</p>
+            <p><img src="./img/lsblk.jpg" alt="lsblk 示例"></p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            又到了最爱的实操环节
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>Linux中的磁盘划分</strong></p>
+            <ul>
+                <li>（1）启动 fdisk，把磁盘名称作为参数</li>
+                <li>（2）输入n添加新分区</li>
+                <li>（3）输入w将更改写入内存</li>
+            </ul>
+            <p><img src="./img/fdisk_1.jpg" alt="Fdisk 示例 1"><img src="./img/fdisk_2.jpg" alt="Fdisk 示例 2"></p>
+        
+            <p><strong>Linux中的磁盘格式化</strong></p>
+            <p>mkfs命令</p>
+            <ul>
+                <li>功能：相当于DOS/Windows系统中的格式化命令，用于创建指定的文件系统。</li>
+                <li>命令格式：<code>mkfs [选项] 设备文件名 [blocks]</code></li>
+                <li>-v: 详细显示模式</li>
+                <li>-t <xfs>：指定文件系统类型，默认值为ext2（例如 -t ext4）</li>
+                <li>-c：在创建文件系统的同时，进行磁盘坏块检查</li>
+                <li>-b: 文件系统块的大小</li>
+            </ul>
+            <p>更多情况下，人们习惯于使用 <code>mkfs.文件系统类型</code> 如图</p>
+            <p><img src="./img/mkfs_1.jpg" alt="mkfs 示例"></p>
+        
+            
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            终于到了挂载的时刻
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><strong>Linux中的分区挂载</strong></p>
+            <p>挂载分区就是把一个分区与一个目录绑定，把这个目录作为进入这个分区的入口，这个目录称为“挂载点”。分区必须被挂载到某个目录后才可以使用。</p>
+            
+            <p><strong>mount命令</strong></p>
+            <p>功能：挂载分区。</p>
+            <p>命令格式：<code>mount [选项] 设备文件名 挂载点</code></p>
+            <ul>
+                <li>-a: 挂接/etc/fstab文件中的所有设备。</li>
+                <li>-L&lt;label&gt;：加载文件系统标签为&lt;label&gt;的设备。</li>
+                <li>-r：以只读方式挂接设备。</li>
+                <li>-t&lt;fs&gt;：指定设备的文件系统类型，取值有ext3fs、ntfs、vfat等。</li>
+                <li>-w: 以可读写模式加载设备，默认设置。</li>
+            </ul>
+            <p>Linux中的分区挂载：</p>
+            <p>先创建挂载目录，然后使用 mount 命令挂载分区。</p>
+            <p><img src="./img/mount_1.jpg" alt="mount_1"></p>
+            
+            <p><strong>umount命令</strong></p>
+            <p>功能：卸载分区。</p>
+            <p>命令格式：<code>umount 设备文件名或挂载点</code></p>
+        </div>
+                
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那么麻烦？每次开机我都要挂载，就没有一键挂载？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            欸~还真有。fstab，你值得拥有。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            配置fstab可以实现Linux启动时自动挂载这些文件系统。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            fstab，全名是文件系统表，位于<code>/etc/fstab</code>。这个文件里面记录了系统应该如何挂载每个文件系统，包括它们的挂载点、类型、挂载选项等等。每次启动时，系统就会读这个文件，按照里面的指示挂载文件系统。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            如果有多个硬盘分区或者网络存储，fstab可以确保它们都按照你的设定自动挂载。这对于服务器和多用户系统尤为关键。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            fstab文件其实就像个清单，告诉系统在启动时怎样去挂载各种文件系统。每一行代表一个文件系统，而且这一行分好几个部分。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p>我们先备份fstab文件，然后使用nano命令查看fstab文件（我这个命令是在超级用户"super user"下执行的）</p>
+            <p><img src="./img/fstab_1.jpg" alt="fstab 示例 1"><img src="./img/fstab_2.jpg" alt="fstab 示例 2"></p>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            这每行怎么还不一样？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            第一部分可以写设备名或者uuid。UUID是一串独特的数字和字母组合，它的好处是即使设备路径变了，系统还是能认出它来。用UUID的话，就算硬盘的插槽换了，系统也不会迷路，第二个是挂载点，第三个是文件系统类型。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那最后一个是选项？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            没错，是挂载选项。比如defaults就是默认设置，ro是只读的，rw是可读写的。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那这两个数字又代表什么？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            第一个数字是dump备份用的（0不备份，正整数备份），第二个数字用于fsck检查。在启动时会进行文件系统检查，并且检查的顺序由这个数字决定。具体来说，它表示在多个文件系统需要检查时的顺序，数字小的先检查。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            最重要的是，编辑前一定要备份。备份原始文件的操作是<code>sudo cp /etc/fstab /etc/fstab.backup</code>。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那我怎么把我刚划好的分区加进去呢？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            <p><img src="./img/fstab_3.jpg" alt="fstab 示例 3"></p>
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            保存退出后，ctrl+x, 运行<code>mount -a</code>来测试我们的设置。如果没有错误，文件系统就会按照我们的配置挂载上。<code>mount -a</code> 命令用于挂载 <code>/etc/fstab</code> 文件中列出的所有在启动时应该自动挂载的文件系统。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            是不是还有高级挂载选项？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            当然~比如<code>noexec</code>选项，它可以阻止在某个挂载点运行可执行文件，增加了系统的安全性。还有<code>nosuid</code>选项，它会忽略文件的SUID和SGID位，这对于共享文件系统特别重要。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            哦，这样可以防止不安全的程序运行和权限提升对吧？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            对的。另一个有趣的选项是<code>nodev</code>，它防止在挂载点创建特殊设备文件，这在公共或多用户系统中很有用。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            现在是互联网的时代，我的linux也要互联。我要看别人的文件，我要听网络文件系统的知识。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            网络文件系统同样存在许多种类，但基本上，在访问 Windows 主机上的文件时，使用名为 cifs 的文件系统；而在访问搭载 Linux 等类 UNIX 系统的主机上的文件时，则使用名为 nfs 的文件系统。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那NFS的基本用途和原理是什么呢？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            NFS的主要用途是文件共享。比如，你在一个服务器上有一些数据，你想让网络上其他的计算机也能访问这些数据。NFS就是用来实现这一点的。原理上，它通过网络协议，允许一个设备向其他设备提供文件访问的权限。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那NFS是怎么工作的呢？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            基本上，NFS工作分为服务器和客户端两部分。服务器端共享出一些目录，客户端则可以挂载这些目录，就像挂载本地文件系统一样。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            有没有具体的使用NFS的例子？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            当然。比如在一个大学里，教授可能会在一台服务器上共享课程资料。学生们可以在他们的电脑上挂载这个共享目录，直接从自己的电脑上访问这些资料。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            如果我想在我的Linux机器上挂载NFS共享，该怎么做？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            假设你的服务器地址是nfs.example.com，共享的目录是/data。你可以这样挂载：<code>sudo mount nfs.example.com:/data /mnt/nfs</code>
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            如果我想让它在每次启动时自动挂载呢？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            那你需要编辑<code>/etc/fstab</code>文件。你可以这样添加一行：<br>
+            <code>nfs.example.com:/data /mnt/nfs nfs defaults 0 0</code><br>
+            这样，每次启动时，/data共享就会自动挂载到/mnt/nfs。
+        </div>
+        
+        <div class="message person-a">
+            <div class="name">明明</div>
+            听起来挺实用的。如果遇到性能问题怎么办？
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            NFS性能问题可能由网络延迟或服务器负载高引起。你可以尝试调整挂载选项，比如增加缓存大小。还可以检查网络连接，确保没有瓶颈。
+        </div>
+        
+        <div class="message person-b">
+            <div class="name">白白</div>
+            CIFS和NFS类似，只不过CIFS是面向windows系统的，客户机可以在文件资源管理器的地址栏输入<code>\\your_server_ip\shared_folder</code>，其中 your_server_ip 是你的Linux服务器的IP地址，shared_folder 是你在Samba配置中定义的共享名称。
+        </div>
+        
+    </div>    
+</body>
+</html>
