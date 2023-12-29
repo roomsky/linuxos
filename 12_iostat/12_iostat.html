@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+           路过 (不敢说话)
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            （警觉！）少年郎！！好久不见啊！想不想学新的知识呢？
+			
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+			什么知识，有用吗？<br>
+           <img src="img/1.jpg"/>
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+           当然有用！linux iostat！主要还是学习命令
+        </div>
+     
+        <div class="message person-b">
+            <div class="name"></div>
+            iostat命令是Linux/Unix系统中的一种工具，用于监控系统的磁盘I/O活动情况，可以展示磁盘的读写速率、I/O等待时间、CPU使用率等信息。iostat命令可以帮助系统管理员发现系统瓶颈，并且优化系统来提高性能。
+			</div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+			好耶 命令我喜欢<br>
+           <img src="img/3.gif"/>
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+           这位先生别那么激动<br>
+		   
+		   首先说一下 iostat的帮助信息命令：<br>iostat --help<br>
+		   这个不用我多说吧
+			
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            嗯呐继续
+        </div>
+        
+      
+        <div class="message person-b">
+            <div class="name">白白</div>
+           iostat的选项解释：<br>
+		   -c: 仅显示CPU利用率相关信息；<br>
+		   -d: 仅显示磁盘I/O相关信息；<br>
+		   -k: 显示输出的数据单位为KB/s而不是默认的字节/s；<br>
+		   -t: 在输出中显示时间戳（时间戳格式YYYY-MM-DD HH:MM:SS）；<br>
+		   -m：显示状态以兆字节每秒为单位；<br>
+		   -p：仅显示块设备和所有被使用的其他分区的状态；<br>
+		   -V：显示版号并退出；<br>
+		   -x：显示扩展状态。
+		 
+        </div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    听不懂思密达<br>
+			<img src="img/2.jpg"/>
+		</div>
+		
+		      
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    别怕，下面命令操作。
+		</div>
+		
+		  <div class="message person-b">
+		      <div class="name"></div>
+		      1.查看iostat工具版本<br>
+			  [root@jeven ~]# iostat -V<br>
+			  sysstat version 10.1.5<br>
+			  (C) Sebastien Godard (sysstat <at> orange.fr)<br>
+			  
+
+		  </div>    
+		<div class="message person-b">
+		    <div class="name"></div>
+		    2.直接使用iostat命令，查看系统的整体情况，显示CPU的负载情况和磁盘的状态信息。<br>
+			[root@jeven ~]# iostat <br>
+			Linux 3.10.0-957.el7.x86_64 (jeven) 	07/05/2023 	_x86_64_	(2 CPU)<br>
+
+			
+
+		</div>
+		
+		      
+		<div class="message person-b">
+		    <div class="name"></div>
+		  3.每隔5秒，查看系统的状态信息，一共查看3次。<br>
+		  
+		  
+		  [root@jeven ~]# iostat 5 3 <br>
+		 
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		 
+		 <img src="img/4.gif"/>
+		
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		  嗯哼学到了
+		</div>
+		
+		      
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		   4. 只查看磁盘的状态信息，展示磁盘的读写速率、I/O等待时间、CPU使用率等信息。<br>
+		   [root@jeven ~]# iostat -d<br>
+		</div>
+		
+		
+		      
+		<div class="message person-b">
+		    <div class="name"></div>
+		    那我问你，实时监控，每隔5秒就显示磁盘信息。 该怎么写</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    你在逗我？iostat -d 5
+		</div>
+		<div class="message person-a">
+		    <div class="name"></div>
+		     <img src="img/5.jpg"/>
+		</div>
+		
+		
+		      
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    这都难不倒你。那我再问你，查看某块磁盘I/O的详细情况 该怎么写？？
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		   （假装没听到）
+		</div>
+		
+		      
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    [root@jeven ~]# iostat -x /dev/sda
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		   和我想的一样
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    <img src="img/6.gif"/>
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    磁盘I/O的详细情况的字段含义：<br>
+			Device 监测设备名称<br>
+			rrqm/s 每秒需要读取需求的数量<br>
+			wrqm/s 每秒需要写入需求的数量<br>
+			r/s 每秒实际读取需求的数量<br>
+			w/s 每秒实际写入需求的数量<br>
+			rsec/s 每秒读取区段的数量<br>
+			wsec/s 每秒写入区段的数量<br>
+			rkB/s 每秒实际读取的大小，单位为KB<br>
+			wkB/s 每秒实际写入的大小，单位为KB<br>
+			avgrq-sz 需求的平均大小区段<br>
+			avgqu-sz 需求的平均队列长度<br>
+			await 等待I/O平均的时间（milliseconds）<br>
+			svctm I/O需求完成的平均时间<br>
+			%util 被I/O需求消耗的CPU百分比<br>
+		
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		 那怎么查看cpu状态信息
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    哟 还是有这个意识，也很简单啦：<br>
+			[root@jeven ~]# iostat -c 5 2<br>
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			再介绍一些含义：<br>
+		   %user：表示用户空间程序执行的CPU时间百分比。<br>
+		   %nice：表示以较高的优先级运行的用户进程的CPU时间百分比。<br>
+		   %system：表示内核空间程序执行的CPU时间百分比。<br>
+		   %iowait：表示CPU等待I/O操作完成的时间百分比。<br>
+		   %steal：表示由于运行虚拟机等原因被其他虚拟机占用的CPU时间百分比。<br>
+		   %idle：表示CPU空闲时间的百分比。<br>
+		  
+		</div>
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		 扫噶！但我要摆烂一分钟
+		</div>
+		<div class="message person-a">
+		    <div class="name"></div>
+		<img src="img/7.gif"/>
+		</div>
+		
+		
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    好啦基本上也就这么多，下面进行iostat命令的使用总结<br>
+			1.磁盘模块分析<br>
+			在使用IOStat进行系统性能监控时，需要注意综合分析磁盘和CPU等多个性能指标，以全面评估系统性能瓶颈的位置和原因。	<br>
+			通过监控以上指标，可以识别磁盘的瓶颈位置，例如：<br><br>
+			
+			如果r/s和w/s较高，说明磁盘IO压力较大，需要考虑更换更高性能的硬盘；<br>
+			如果await和svctm较高，说明磁盘处理I/O请求的能力不足，可能需要更换磁盘控制器或升级磁盘阵列等。<br>
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		 <img src="img/8.jpg"/>
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		 笑什么
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		 快讲完了，我开心嘻嘻
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		   2.CPU模块分析<br>
+		   通过监控以上指标，可以识别CPU的瓶颈位置，例如：<br><br>
+		   
+		   如果%user和%system较高，说明CPU的负载较大，可能需要考虑升级CPU或增加CPU核心数；<br>
+		   如果%iowait较高，说明CPU等待IO完成的时间较长，可能需要优化磁盘性能或者减少磁盘IO操作；<br>
+		   如果%idle值高，表示CPU较空闲，系统处于空闲状态，无太多处理任务;<br>
+		   如果%idle值高但系统响应慢时，有可能是CPU等待分配内存，此时应加大内存容量。<br>
+		   如果%idle较低，说明CPU负载较大，可能需要考虑优化应用程序或增加CPU资源等。<br>
+		  
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		好了，讲完了，嘻嘻嘻嘻嘻嘻嘻，剩下的就要靠你努力学习了，拜拜
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+			干啥也不容易啊（感慨）
+		 
+		</div>
+		<div class="message person-a">
+		    <div class="name"></div>
+			
+		 <img src="img/9.gif"/>
+		</div>
+		
+		
+    </div>
+	<hr/>
+		<hr/>
+</body>
+</html>
