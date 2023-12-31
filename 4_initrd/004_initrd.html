@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我最近学initrd学的头昏眼花！
+            </br>
+            快来救救我啊！！！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            莫急莫急，在座的各位’客官‘且听我娓娓道来。initrd是Initial RAM Disk的缩写。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            王子请说中文~
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            哈哈哈，好滴。initrd的意思就是是初始RAM磁盘。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            听说他居然在kernel前加载？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            没错，initrd可谓是’国服辅助‘。 当你的电脑启动时，initrd会先加载，就像是在准备好一切东西，等待kernel的到来。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那他具体有啥作用？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            它里面装着一些必要的东西，比如驱动程序和工具，这些东西可以帮助kernel在启动时找到并访问你电脑的“根”文件系统，就像是开门的钥匙一样。
+
+        </div>
+        <div class="message person-b">
+            所以，initrd在kernel前加载，就是为了确保kernel能够成功启动并找到所需的东西，让你的电脑能够顺利地启动起来。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            明白了，3q！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+             如果还有其他问题，随时呼叫哦！
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            咱们继续开始吧！学习使我快乐/(ㄒoㄒ)/~~
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            好啊，为中华之崛起而读书！
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+            在不同的Linux版本中，创建initrd的方法会有所不同吗？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            是的，根据不同的Linux版本，创建initrd的方法可能会有所不同。在Fedora Core 3之前，initrd是使用loop设备来构建的。
+        </div>
+		<div class="message person-a">
+            <div class="name">明明</div>
+           loop设备是什么？它有什么作用？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            loop设备是一个设备驱动程序，可以将文件作为块设备挂载到系统中，从而查看文件系统中的内容。
+
+        </div>
+		<div class="message person-b">
+		    就按照这样的语句就可以查看initrd的内容：代码1
+            查看 initrd 的内容（适用于 FC3 之前的版本）
+           	# mkdir temp ; cd temp
+	        # cp /boot/initrd.img.gz .
+	        # gunzip initrd.img.gz
+	        # mount -t ext -o loop initrd.img /mnt/initrd
+	        # ls -la /mnt/initrd
+	        #
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            啊？代码好难，你能再仔细解释下么？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+                没问题！通过上述代码我们就可以查看 /mnt/initrd 子目录中的内容了，这就代表了 initrd 文件的内容。
+	            注意，即使您的 initrd 映像文件不是以 .gz 结尾，它也可能是一个压缩文件，你可以给这个文件添加上 .gz 后缀，然后再使用 gunzip 对其进行解压。
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+                那如果我的内核中没有启用loop设备我咋查看内容啊？
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            你可真是个发现问题的天才！如果内核中没有启用loop设备，可以通过内核配置工具选择启用。
+	从 Fedora Core 3 开始，默认的 initrd 映像变成了一个经过压缩的 cpio 归档文件。我们不用再使用 loop 设备来将 initrd 作为压缩映像进行挂载，而是可以将其作为 cpio 归档文件来使用。要查看 cpio 归档文件的内容，可以使用下面的命令：
+	. 查看 initrd 的内容（适用于 FC3 及其以后的版本）
+        </div>
+        <div class="message person-b">
+                代码3<br/>
+                # mkdir temp ; cd temp<br/>
+	            # cp /boot/initrd-2.6.14.2.img initrd-2.6.14.2.img.gz<br/>
+	            # gunzip initrd-2.6.14.2.img.gz<br/>
+	            # cpio -i --make-directories < initrd-2.6.14.2.img<br/>
+	            #<br/>
+            </div>
+        <div class="message person-b">
+                &emsp;&emsp;运行完会生成一个很小的根文件系统，如代码3所示。
+                <p>  在 ./bin 目录中有一组很少但却非常必要的应用程序，包括 nash（即 not a shell，是一个脚本解释器）</p>
+                <p>  insmod（用来加载内核模块）和 lvm（逻辑卷管理工具）。</p>
+
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+                Linux initrd目录是啥样呢？
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+                # ls -la<br/>
+                #<br/>
+                drwxr-xr-x  10 root root    4096 May 7 02:48 .<br/>
+                drwxr-x---  15 root root    4096 May 7 00:54 ..<br/>
+                drwxr-xr-x  2  root root    4096 May 7 02:48 bin<br/>
+                drwxr-xr-x  2  root root    4096 May 7 02:48 dev<br/>
+                drwxr-xr-x  4  root root    4096 May 7 02:48 etc<br/>
+                -rwxr-xr-x  1  root root     812 May 7 02:48 init<br/>
+                -rw-r--r--  1  root root 1723392 May 7 02:45 initrd-2.6.14.2.img<br/>
+                drwxr-xr-x  2  root root    4096 May 7 02:48 lib<br/>
+                drwxr-xr-x  2  root root    4096 May 7 02:48 loopfs<br/>
+                drwxr-xr-x  2  root root    4096 May 7 02:48 proc<br/>
+                lrwxrwxrwx  1  root root       3 May 7 02:48 sbin -> bin<br/>
+                drwxr-xr-x  2  root root    4096 May 7 02:48 sys<br/>
+                drwxr-xr-x  2  root root    4096 May 7 02:48 sysroot<br/>
+                #<br/>
+        </div>
+        <div class = "message person-a">
+            <div class="name">明明</div>
+            好长的代码o_o ....
+        </div>
+
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            &emsp;&emsp;比较有趣的是 init 文件就在根目录中。与传统的 Linux 引导过程类似，这个文件也是在将 initrd 映像解压到 RAM 磁盘中时被调用的。
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那initrd是咋创建的啊？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            我们使用 cpio 命令，可以对 cpio 文件进行操作。
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            可是，可是那cpio又是啥？（尴尬）
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            看你这勤学好问，肯定能早日成为Linux大罗金仙！
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那是必须的！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            cpio 是一种文件格式，它简单地使用文件头将一组文件串接在一起。cpio 文件格式可以使用 ASCII 和二进制文件。为了保证可移植性，我们可以使用 ASCII 格式。为了减小文件大小，我们可以使用二进制的版本。
+	俗话说的好‘磨刀不误砍柴工’。
+        </div>
+
+         <div class="message person-b">
+            对于传统的 Linux 系统来说，initrd 映像是在 Linux 构建过程中创建的。有很多工具，例如 mkinitrd，都可以用来使用必要的库和模块自动构建 initrd，从而用作与真实的根文件系统之间的桥梁。
+        </div>
+
+        <div class="message person-b">
+            mkinitrd 工具实际上就是一个 shell 脚本，因此我们可以看到它究竟是如何来实现这个结果的。还有一个YAIRD（即 Yet Another Mkinitrd）工具，可以对 initrd 构建过程的各个方面进行定制。
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            wow,看起来好高大上啊！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            不要被他们的名头吓到哦！其实你也能亲自构建定制的初始 RAM 磁盘，要不要试一试？
+
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            好啊！！（激动.jpg）
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            由于在很多基于 Linux 的嵌入式系统上没有硬盘，因此 initrd 也会作为这种系统上的永久根文件系统使用。清单 4 显示了如何创建一个 initrd 映像文件。我使用了一个标准的 Linux 桌面，这样您即使没有嵌入式平台，也可以按照下面的步骤来执行了。除了交叉编译，其他概念（也适用于initrd 的构建）对于嵌入式平台都是相同的。
+
+        </div>
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+                所以所以那该咋敲代码？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            你有够直接哦，创建定制 initrd 的工具（mkird）
+        </div>
+        <div class="message person-b">
+            #!/bin/bashv
+
+            # Housekeeping...<br/>
+            rm -f /tmp/ramdisk.img<br/>
+            rm -f /tmp/ramdisk.img.gz<br/>
+
+            # Ramdisk Constants<br/>
+            RDSIZE=4000<br/>
+            BLKSIZE=1024<br/>
+
+            # Create an empty ramdisk image<br/>
+            dd if=/dev/zero of=/tmp/ramdisk.img bs=$BLKSIZE count=$RDSIZE<br/>
+
+            # Make it an ext2 mountable file system<br/>
+            /sbin/mke2fs -F -m 0 -b $BLKSIZE /tmp/ramdisk.img $RDSIZE<br/>
+
+            # Mount it so that we can populate<br/>
+            mount /tmp/ramdisk.img /mnt/initrd -t ext2 -o loop=/dev/loop0<br/>
+
+            # Populate the filesystem (subdirectories)<br/>
+            mkdir /mnt/initrd/bin<br/>
+            mkdir /mnt/initrd/sys<br/>
+            mkdir /mnt/initrd/dev<br/>
+            mkdir /mnt/initrd/proc<br/>
+
+            # Grab busybox and create the symbolic links<br/>
+            pushd /mnt/initrd/bin<br/>
+            cp /usr/local/src/busybox-1.1.1/busybox <br/>
+            ln -s busybox ash<br/>
+            ln -s busybox mount<br/>
+            ln -s busybox echo<br/>
+            ln -s busybox ls<br/>
+            ln -s busybox cat<br/>
+            ln -s busybox ps<br/>
+            ln -s busybox dmesg<br/>
+            ln -s busybox sysctl<br/>
+            popd<br/>
+
+            # Grab the necessary dev files<br/>
+            cp -a /dev/console /mnt/initrd/dev \<br/>
+            cp -a /dev/ramdisk /mnt/initrd/dev<br/>
+            cp -a /dev/ram0 /mnt/initrd/dev<br/>
+            cp -a /dev/null /mnt/initrd/dev<br/>
+            cp -a /dev/tty1 /mnt/initrd/dev<br/>
+            cp -a /dev/tty2 /mnt/initrd/dev<br/>
+
+            # Equate sbin with bin<br/>
+            pushd /mnt/initrd<br/>
+            ln -s bin sbin<br/>
+            popd<br/>
+
+            # Create the init file<br/>
+            cat >> /mnt/initrd/linuxrc << EOF<br/>
+            #!/bin/ash<br/>
+            echo<br/>
+            echo "Simple initrd is active"<br/>
+            echo<br/>
+            mount -t proc /proc /proc<br/>
+            mount -t sysfs none /sys<br/>
+            /bin/ash --login<br/>
+            EOF<br/>
+
+            chmod +x /mnt/initrd/linuxrc<br/>
+
+            # Finish up...<br/>
+            umount /mnt/initrd<br/>
+            gzip -9 /tmp/ramdisk.img<br/>
+            cp /tmp/ramdisk.img.gz /boot/ramdisk.img.gz<br/>
+
+        </div>
+
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            好长！好难！看不懂啊！！(╬▔皿▔)凸
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            别急别急，我给你解释下，就知道你看不懂（鄙视...）
+        </div>
+        <div class="message person-b">
+            为了创建 initrd，我们最开始创建了一个空文件，这使用了 /dev/zero（一个由零组成的码流）作为输入，并将其写入到 ramdisk.img 文件中。<br/>
+            </div>
+        <div class="message person-b">
+            所生成的文件大小是 4MB（4000 个 1K 大小的块）。然后使用 mke2fs 命令在这个空文件上创建了一个 ext2（即 second extended）文件系统。现在这个文件变成了一个 ext2 格式的文件系统，我们使用 loop 设备将这个文件挂载到 /mnt/initrd 上了。在这个挂载点上，我们现在就有了一个目录，它以 ext2 文件系统的形式呈现出来，我们可以对自己的 initrd 文件进行拼装了。接下来的脚本提供了这种功能。
+        
+        </div>
+
+        <div class="message person-b">
+            下一个步骤是创建构成根文件系统所需要的子目录：/bin、/sys、/dev 和 /proc。
+            这里只列出了所需要的目录（例如没有库），但是其中包含了很多功能。
+
+        </div>
+        <div class="message person-b">
+            为了可以使用根文件系统，我们使用了 BusyBox。
+            这个工具是一个单一映像，其中包含了很多在 Linux 系统上通常可以找到的工具（例如 ash、awk、sed、insmod 等）。BusyBox 的优点是它将很多工具打包成一个文件，同时还可以共享它们的通用元素，这样可以极大地减少映像文件的大小。这对于嵌入式系统来说非常理想。将 BusyBox 映像从自己的源目录中拷贝到自己根目录下的 /bin 目录中。然后创建了很多符号链接，它们都指向 BusyBox 工具。BusyBox 会判断所调用的是哪个工具，并执行这个工具的功能。我们在这个目录中创建了几个链接来支持 init 脚本（每个命令都是一个指向 BusyBox 的链接。）
+        </div>
+
+        <div class="message person-b">
+            下一个步骤是创建几个特殊的设备文件。我从自己当前的 /dev 子目录中直接拷贝了这些文件，这使用了 -a 选项（归档）来保留它们的属性。
+
+
+            </div>
+        <div class="message person-b">
+            倒数第二个步骤是生成 linuxrc 文件。在内核挂载 RAM 磁盘之后，它会查找 init 文件来执行。如果没有找到 init 文件，内核就会调用 linuxrc 文件作为自己的启动脚本。我们在这个文件中实现对环境的基本设置，例如挂载 /proc 文件系统。除了 /proc 之外，我还挂载了 /sys 文件系统，并向终端打印一条消息。最后，我们调用了 ash（一个 Bourne Shell 的克隆），这样就可以与根文件系统进行交互了。linuxrc 文件然后使用chmod 命令修改成可执行的。
+
+            </div>
+        <div class="message person-b">
+            最后，我们的根文件系统就完成了。我们将其卸载掉，然后使用 gzip 对其进行压缩。所生成的文件（ramdisk.img.gz）被拷贝到 /boot 子目录中，这样就可以通过 GNU GRUB 对其进行加载了。
+	
+            </div>
+        <div class="message person-b">
+            要构建初始 RAM 磁盘，我们可以简单地调用 mkird，这样就会自动创建这个映像文件，并将其拷贝到 /boot 目录中。
+
+            </div>
+
+        
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            哎呦，还不错哦~（周杰伦腔调）解释的文字比代码还长，有够仔细👍
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            不要这么夸我哦，我会飘的，哈哈哈哈！
+        </div>
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            搭建完毕要咋样测试呢？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+                对于 Linux 内核来说，要支持初始 RAM 磁盘，内核必须要使用 CONFIG_BLK_DEV_RAM 和CONFIG_BLK_DEV_INITRD 选项进行编译。
+	            新的 initrd 映像现在已经在 /boot 目录中了，因此下一个步骤是使用默认的内核来对其进行测试。现在我们可以重新启动 Linux 系统了。在出现 GRUB 界面时，按 C 键启动 GRUB 中的命令行工具。我们现在可以与 GRUB 进行交互，从而定义要加载哪个内核和 initrd 映像文件。kernel 命令让我们可以指定内核文件，initrd 命令可以用来指定 initrd 映像文件。在定义好这些参数之后，就可以使用 boot 命令来引导内核了，如清单 5 所示。
+
+        </div>
+        <div class="message person-b">
+            使用 GRUB 手工引导内核和 initrd<br/>
+            GNU GRUB  version 0.95  (638K lower / 97216K upper memory)<br/>
+
+            [ Minimal BASH-like line editing is supported. For the first word, TAB<br/>
+            lists possible command completions. Anywhere else TAB lists the possible<br/>
+            completions of a device/filename. ESC at any time exits.]<br/>
+
+            grub> kernel /bzImage-2.6.1<br/>
+            [Linux-bzImage, setup=0x1400, size=0x29672e]<br/>
+
+            grub> initrd /ramdisk.img.gz<br/>
+            [Linux-initrd @ 0x5f2a000, 0xb5108 bytes]<br/>
+
+            grub> boot<br/>
+
+            Uncompressing Linux... OK, booting the kernel.<br/>
+            </div>
+
+        <div class="message person-b">
+            在内核启动之后，它会检查是否有 initrd 映像文件可用（稍后会更详细介绍），然后将其加载，并将其挂载成根文件系统。在清单 6 中我们可以看到这个 Linux 启动过程最后的样子。在启动之后，ash shell 就可以用来输入命令了。在这个例子中，我们将浏览一下根文件系统的内容，并查看一下虚拟 proc 文件系统中的内容。我们还展示了如何通过 touch 命令在文件系统中创建文件。注意所创建的第一个进程是 linuxrc（通常都是 init）。
+            </div>
+
+        <div class="message person-b">
+            代码6. 使用简单的 initrd 引导 Linux 内核<br/>
+            ...<br/>
+            md: Autodetecting RAID arrays<br/>
+            md: autorun<br/>
+            md: ... autorun DONE.<br/>
+            RAMDISK: Compressed image found at block 0<br/>
+            VFS: Mounted root (ext2 file system).<br/>
+            Freeing unused kernel memory: 208k freed<br/>
+            / $ ls<br/>
+            bin         etc       linuxrc       proc        sys<br/>
+            dev         lib       lost+found    sbin<br/>
+            / $ cat /proc/1/cmdline<br/>
+            /bin/ash/linuxrc<br/>
+            / $ cd bin<br/>
+            /bin $ ls<br/>
+            ash      cat      echo     mount    sysctl<br/>
+            busybox  dmesg    ls       ps<br/>
+            /bin $ touch zfile<br/>
+            /bin $ ls<br/>
+            ash      cat      echo     mount    sysctl<br/>
+            busybox  dmesg    ls       ps       zfile<br/>
+            </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+                大功告成！！！终于学会如何构建并使用定制的初始 RAM 磁盘了。
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+                学习尚未成功 同志仍需努力！（加油(ง •_•)ง）
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+                构建初始RAM磁盘，那么内核是如何识别 initrd 并将其作为根文件系统进行挂载的啊？
+        </div>
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+                来来来我给你将介绍启动链中的几个主要函数，并解释一下到底在进行什么操作，你就懂啦！
+
+        </div>
+        <div class="message person-b">
+            引导加载程序，例如 GRUB，定义了要加载的内核，并将这个内核映像以及相关的 initrd 拷贝到内存中。我们可以在 Linux 内核源代码目录中的 ./init 子目录中找到很多这种功能。
+
+            </div>
+        <div class="message person-b">
+            在内核和 initrd 映像被解压并拷贝到内存中之后，内核就会被调用了。它会执行不同的初始化操作，最终您会发现自己到了init/main.c:init()（subdir/file:function）函数中。这个函数执行了大量的子系统初始化操作。此处会执行一个对init/do_mounts.c:prepare_namespace() 的调用，这个函数用来准备名称空间（挂载 dev 文件系统、RAID 或 md、设备以及最后的initrd）。加载 initrd 是通过调用 init/do_mounts_initrd.c:initrd_load() 实现的。
+
+            </div>
+
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+                wow！白白你好细啊！讲的通俗易懂啊！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+                那是不然你这个糊涂蛋咋听的明白，好了接着学。
+        </div>
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+                initrd_load() 函数有啥用？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            initrd_load()函数调用了init/do_mounts_rd.c:rd_load_image()，它通过调用init/do_mounts_rd.c:identify_ramdisk_image() 来确定要加载哪个 RAM 磁盘。</br>
+            这个函数会检查映像文件的 magic 号来确定它是 minux、etc2、romfs、cramfs 或 gzip 格式。在返回到 initrd_load_image 之前，它还会调用 init/do_mounts_rd:crd_load()。</br>
+            这个函数负责为 RAM 磁盘分配空间，并计算循环冗余校验码（CRC），然后对 RAM 磁盘映像进行解压，并将其加载到内存中。
+            现在，我们在一个适合挂载的块设备中就有了这个 initrd 映像。
+            </div>
+
+        <div class="message person-b">
+                现在使用一个 init/do_mounts.c:mount_root() 调用将这个块设备挂载到根文件系统上。它会创建根设备，并调用init/do_mounts.c:mount_block_root()。在这里调用 init/do_mounts.c:do_mount_root()，后者又会调用fs/namespace.c:sys_mount() 来真正挂载根文件系统，然后 chdir 到这个文件系统中。这就是我们在清单 6 中所看到的熟悉消息 VFS: Mounted root (ext2 file system). 的地方。
+	
+            </div>
+
+        <div class="message person-b">
+            最后，返回到 init 函数中，并调用 init/main.c:run_init_process。这会导致调用 execve 来启动 init 进程（在本例中是/linuxrc）。linuxrc 可以是一个可执行程序，也可以是一个脚本（条件是它有脚本解释器可用）。
+
+            </div>
+
+        <div class="message person-b">
+            这些函数的调用层次结构如代码7 所示。尽管此处并没有列出拷贝和挂载初始 RAM 磁盘所涉及的所有函数，但是这足以为我们提供一个整体流程的粗略框架。
+
+            </div>
+
+        <div class="message person-b">
+
+        代码 7. initrd 加载和挂载过程中所使用的主要函数的层次结构
+init/main.c:init
+  init/do_mounts.c:prepare_namespace
+    init/do_mounts_initrd.c:initrd_load
+      init/do_mounts_rd.c:rd_load_image
+        init/do_mounts_rd.c:identify_ramdisk_image
+        init/do_mounts_rd.c:crd_load
+          lib/inflate.c:gunzip
+    init/do_mounts.c:mount_root
+      init/do_mounts.c:mount_block_root
+         init/do_mounts.c:do_mount_root
+           fs/namespace.c:sys_mount
+  init/main.c:run_init_process
+    execve
+</div>
+
+
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            （脑袋）宕机ing......
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            哈哈哈，快快恢复咱们接着来，(ง •_•)ง
+        </div>
+
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            是不是还有一个无盘引导啊？
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            没错，与嵌入式引导的情况类似，本地磁盘（软盘或 CD-ROM）对于引导内核和 ramdisk 根文件系统来说都不是必需的。DHCP（Dynamic Host Configuration Protocol）可以用来确定网络参数，例如 IP 地址和子网掩码。TFTP（Trivial File Transfer Protocol）可以用来将内核映像和初始 ramdisk 映像传输到本地设备上。传输完成之后，就可以引导 Linux 内核并挂载 initrd 了，这与本地映像引导的过程类似。
+
+        </div>
+
+
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+            我还要压缩 initrd，你能不能办到啊！
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            必须的必啊！在构建嵌入式系统时，我们可能希望将 initrd 映像文件做得尽可能小，这其中有一些技巧需要考虑。首先是使用 BusyBox（本文中已经展示过了）。BusyBox 可以将数 MB 的工具压缩成几百 KB。
+
+        </div>
+
+        <div class="message person-b">
+            在这个例子中，BusyBox 映像是静态链接的，因此它不需要其他库。然而，如果我们需要标准的 C 库（我们自己定制的二进制可能需要这个库），除了巨大的 glibc 之外，我们还有其他选择。第一个较小的库是 uClibc，这是为对空间要求非常严格的系统准备的一个标准 C 库。另外一个适合空间紧张的环境的库是 dietlib。要记住我们需要使用这些库来重新编译想在嵌入式系统中重新编译的二进制文件，因此这需要额外再做一些工作（但是这是非常值得的）。
+
+            </div>
+
+
+
+
+
+
+
+
+        <div class="message person-a">
+            <div class="name">明明</div>
+             终于学完这一章了！白白，总结一下哈！
+        </div>
+
+
+
+        <div class="message person-b">
+            <div class="name">白白</div>
+            好滴！初始 RAM 磁盘最初是设计用来通过一个临时根文件系统来作为内核到最终的根文件系统之间的桥梁。</br>
+            对于在嵌入式系统中加载到 RAM 磁盘里的非持久性根文件系统来说也非常有用。
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>
