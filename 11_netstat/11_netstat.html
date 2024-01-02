@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+            <img src="./img/11.gif" alt="">
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            咋啦？垂头丧气的。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+       问君能有几多愁，恰似一江春水向东流。要用到netstat了，一点也不会。愁啊愁...
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            嗐，别怕，我来教你！掌握一些选项含义，慢慢就没问题啦。
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            呜呜谢谢你安慰我，请开始吧！
+			<img src="img/16.gif"/>
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            Netstat是控制台命令,是一个监控TCP/IP网络的非常有用的工具，它可以显示路由表、实际的网络连接以及每一个网络接口设备的状态信息。Netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。<br>
+			<br>在 CentOS 7 操作系统中，此命令默认是未安装的，所以我们可以使用如下命令进行网络工具包的安装。<br><br>
+			yum install -y net-tools
+
+		</div>
+       
+        <div class="message person-b">
+            <div class="name"></div>
+            刚开始，可以查看帮助文档，使用命令...（话音未落）
+        </div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    netstat --help（即答）
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    <img src="./img/14.gif" alt="">
+			...就可以查看各个参数的含义
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    嘻嘻
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		   下面介绍几个常用的选项：<br><br>
+		   
+		   -a，–all：显示所有 socket 连接，默认显示已连接的。<br>
+		   -t，–tcp：仅显示 TCP 相关。<br>
+		   -u，–udp：仅显示 UDP 相关。<br>
+		   -p，–programs：显示建立 socket 连接的进程 ID 和程序名。<br>
+		   -n，–numeric：不解析别名，能显示数字的全部转为数字，例如 IP 和 Port。<br>
+		   -l，–listening：仅显示在监听（Listening）的 socket 服务。<br>
+		   -r，–toute：显示路由表。<br>
+		   -e，–extend：显示更多扩展信息。<br>
+		   -s，–statistics：按各个协议展示网络统计信息。<br>
+		   -c，–continuous：继续监听，即每隔一段时间执行一次 netstat 命令。<br>
+		  
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    下面讲亿个栗子嗷！
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    好！<br><img src="img/8.jpg"/>
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    1.列出所有的连接<br><br>
+			netstat -a<br>
+			-a选项会列出tcp，udp和unix协议下所有套接字的连接。但是我们一般只是想查找某个协议或某个端口的具体连接情况。<br>
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		   2.只列出TCP或UDP协议的连接<br><br>
+		   
+		   用-t选项列出TCP协议的连接
+		   <img	 src="img2/1.png">
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		   用-u选项列出UDP协议的连接
+		   
+		   
+		   <img	 src="img2/2.png">
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    简简单单吖<br><img src="img/1.jpg"/>
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		 本来也不难<br />
+		 <img src="img/10.jpg"/>
+		 </div>
+		
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  3. 禁用反向域名解析，加快查询速度<br><br>
+		   
+		   默认情况下 netstat 会通过反向域名解析技术查找每个 IP 地址对应的主机名。这会降低查找速度。如果你觉得 IP 地址已经足够，而没有必要知道主机名，就使用 -n 选项禁用域名解析功能。
+		   <img	 src="img2/3.png">
+			tcp  0         0  192.168.56.101:22      192.168.56.1:46119      ESTABLISHED 是用ssh协议登录到主机的，所以可以看到这是建立的一条tcp连接。   
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		   4. 只列出监听中的连接<br><br>
+		   
+		   任何网络服务的后台进程都会打开一个端口，用于监听接入的请求。这些正在监听的套接字也和连接的套接字一样，也能被 netstat 列出来。使用 -l 选项列出正在监听的套接字。
+		   <img	 src="img2/4.png">
+			现在我们可以看到处于监听状态的 TCP 端口和连接。如果你查看所有监听端口，去掉 -t 选项。如果你只想查看 UDP 端口，使用 -u 选项，代替 -t 选项。
+			<img	 src="img2/5.png">
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  5. 获取进程名、进程号以及用户ID<br><br>
+		   
+		   查看端口和连接的信息时，能查看到它们对应的进程名和进程号对系统管理员来说是非常有帮助的。举个例子，Apache 的 httpd 服务开启80端口，如果你要查看 http 服务是否已经启动，或者 http 服务是由 apache 还是 nginx 启动的，这时候你可以看看进程名。
+		   <br>
+		   使用 -p 选项查看进程信息。
+		   <img	 src="img2/6.png">
+			   使用 -p 选项时，netstat 必须运行在 root 权限之下，不然它就不能得到运行在 root 权限下的进程名，而很多服务包括 http 和 ftp 都运行在 root 权限之下。
+			   
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    等一下，讲太快脑子没转过来<br><img src="img/丽丽1.gif"/>
+		</div>
+		<div class="message person-a">
+		    <div class="name"></div>
+		    我要问你问题！怎么同时查看进程名和用户名啊</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			
+			简单！使用 -ep 选项就可以同时查看进程名和用户名。
+			  <img	 src="img2/7.png">
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+			
+			好了休息一分钟<br>
+			  <img	 src="img/7.gif">
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		  6. 打印统计数据<br><br>
+		   
+		   netstat 可以打印出网络统计数据，包括某个协议下的收发包数量。选项是-s<br><br>
+		   下面列出所有网络包的统计情况：
+		   <img	 src="img2/8.png">
+			   如果想只打印出 TCP 或 UDP 协议的统计数据，只要加上对应的选项（-t 和 -u）即可。
+			    <img	 src="img2/9.png">
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		 7. 显示内核路由信息<br><br>
+		   
+		   使用 -r 选项打印内核路由信息。打印出来的信息与 route 命令输出的信息一样。我们也可以使用 -n 选项禁止域名解析。
+		   <img	 src="img2/10.png">
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		   8. 打印网络接口<br><br>
+		   
+		   netstat 也能打印网络接口信息，-i 选项就是为这个功能而生。
+		   <img	 src="img2/11.png">
+		</div>
+		
+			<div class="message person-a">
+			    <div class="name">明明</div>
+			    仔细看了下，命令并不那么难，有空去练练嘻嘻<br>
+				<img src="img/19.gif"/>
+				
+			</div>
+			
+			<div class="message person-b">
+			    <div class="name">白白</div>
+			  这就对咯<br>
+			  <img src="img/3.gif"/>
+			</div>
+			
+			
+			
+			
+			
+			
+		<div class="message person-b">
+		    <div class="name"></div>	
+			继续<br>
+		   9. netstat 持续输出<br><br>
+		   
+		   我们可以使用 netstat 的 -c 选项持续输出信息。<br>
+		   比如 netstat -ct 这个命令可持续输出 TCP 协议信息。会持续输出下面的内容。
+		   <img	 src="img2/13.png">
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		   10. 显示多播组信息<br><br>
+		   
+		   选项 -g 会输出 IPv4 和 IPv6 的多播组信息。
+		   <img	 src="img2/14.png">
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		  11、打印 active 状态的连接<br><br>
+		   
+		   active 状态的套接字连接用 "ESTABLISHED" 字段表示，所以我们可以使用 grep 命令获得 active 状态的连接：
+		   <img	 src="img2/15.png">
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		 12、查看服务是否在运行<br><br>
+		   
+		   如果你想看看 http,smtp 或 ntp 服务是否在运行，使用 grep。
+		   <img	 src="img2/16.png">
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    好啦，基本上就到这里了，多多练习吧。等等，拿上这个图片，一目了然。
+		   <img src="./img/22.png" alt="">
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    哇，太棒咯，谢谢！
+			<img src="img/17.gif"/>
+		</div>
+		
+		
+		
+		
+		
+		
+    </div>
+	<hr/>
+		<hr/>
+</body>
+</html>
