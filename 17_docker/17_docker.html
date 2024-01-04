@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+            完了，不会docker，老板看我的眼神都变了，让我明天别来了。
+			<img src="img/27.png"/>
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            啊哈哈哈，那你后天再去吧，今天学学docker
+		
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            好嘞哥
+			<img src="img/24.jpg"/>
+			
+        </div>
+		
+		
+		
+        <div class="message person-b">
+            <div class="name">白白</div>
+           首先，啥是docker<br><br>
+		   1.是一个开源的应用容器引擎，基于go语言开发并遵循了apache2.0协议<br>
+		   2.是在Linux容器里运行应用的开源工具<br>
+		   3.是一种轻量级的“虚拟机”<br>
+		  4.docker的容器技术可以在一台虚拟机上轻松为任何应用创建一个轻量级的、可移植的、自给自足的容器
+        </div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+			docker的核心概念，这个你必须要了解<br><br>
+			
+			1、 镜像<br>
+			
+			Docker的镜像是创建容器的基础，类似虚拟机的快照，可以理解为一个面向Docker容器引擎的只读模板。
+			<br>
+			通过镜像启动一个容器，一个镜像是一个可执行的包，其中包括运行应用程序所需要的所有内容包含代码，运行时间，库、环境变量、和配置文件。
+			<br>
+			Docker镜像也是一个压缩包，只是这个压缩包不只是可执行文件，环境部署脚本，它还包含了完整的操作系统。因为大部分的镜像都是基于某个操作系统来构建，所以很轻松的就可以构建本地和远端一样的环境，这也是Docker镜像的精髓。
+			<br><br>
+			2 、容器
+			<br>
+			Docker的容器是从镜像创建的运行实例，它可以被启动、停止和删除。所创建的每一个容器都是相互隔离、互不可见，以保证平台的安全性。可以把容器看做是一个简易版的linux环境（包括root用户权限、镜像空间、用户空间和网络空间等）和运行在其中的应用程序。
+			<br><br>
+			3、 仓库
+			<br>
+			Docker仓库是用来集中保存镜像的地方，当创建了自己的镜像之后，可以使用push命令将它上传到公有仓库（Piblic）或者私有仓库（Private）。当下次要在另外一台机器上使用这个镜像时，只需从仓库获取。
+			<br><br>
+			Docker的镜像、容器、日志等内容全部都默认存储在 /var/lib/docker。
+			
+		   
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		   下面讲安装，要认真的安装嗷！别搞错
+		   
+
+		</div>
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+			好！！<br>
+		    <img src="img/22.jpg"/>
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		 进行初始化操作<br><br>
+		 
+		 systemctl stop firewalld<br>
+		 setenforce 0<br>
+		 <br>
+		 1、安装依赖包	<br>
+		 yum install -y yum-utils device-mapper-persistent-data lvm2<br><br>
+yum-utils：提供了 yum-config-manager 工具。<br>
+device mapper： 是Linux内核中支持逻辑卷管理的通用设备映射机制，它为实现用于存储资源管理的块设备驱动提供了一个高度模块化的内核架构。<br>
+device mapper存储驱动程序需要 device-mapper-persistent-data 和 lvm2。<br>
+
+
+
+
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    2、设置阿里云镜像源<br>
+			yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo <br><br>
+			#安装 Docker-CE并设置为开机自动启动<br>
+			yum install -y docker-ce docker-ce-cli containerd.io<br><br>
+			systemctl start docker.service
+			systemctl enable docker.service <br><br>
+			安装好的Docker系统有两个程序，Docker服务端和Docker客户端。其中Docker服务端是一个服务进程，负责管理所有容器。 Docker客户端则扮演着Docker服务端的远程控制器，可以用来控制Docker的服务端进程。大部分情况下Docker服务端和客户端运行在一台机器上。
+			
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    查看 docker 版本信息，dock..
+		</div>
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    docker version(抢答)
+			<img src="./img/30.jpg"/>
+
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    那docker 信息查看呢？
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    
+			<img src="./img/31.jpg"/>
+		
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    是docker info，我知道你一定会。
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    下面讲讲Docker 镜像操作嗷！
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #搜索镜像<br>
+		    格式：docker search 关键字<br>
+			例如：docker search nginx<br>
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #获取镜像<br>
+		    格式：docker pull 仓库名称[:标签]<br><br>
+		    #如果下载镜像时不指定标签，则默认会下载仓库中最新版本的镜像，即选择标签为 latest 标签。<br>
+			例如：docker pull nginx<br>
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #查看镜像信息<br>
+		    镜像下载后存放在 /var/lib/docker 。<br><br>
+		    Docker 相关的本地资源存放在 /var/lib/docker/ 目录下，其中 containers 目录存放容器信息，image 目录存放镜像信息，overlay2 目录下存放具体的镜像底层文件。
+		</div>
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #查看下载的镜像文件信息<br>
+			cat /var/lib/docker/image/overlay2
+			/repositories.json<br>
+
+		</div>
+		
+		
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    怎么这么多,大脑要萎缩了
+			<img src="img/丽丽3.jpg"/>
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    认真学才不会被炒鱿鱼！继续！！
+			<img src="./img/29.jpg" alt="">
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #查看下载到本地的所有镜像<br>
+			docker images<br><br>
+			#根据镜像的唯一标识 ID 号，获取镜像详细信息<br>
+			
+			格式：docker inspect 镜像ID号<br>
+			例如：docker inspect ae2feff98a0c
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #为本地的镜像添加新的标签<br>
+			格式：docker tag 名称:[标签] 新名称:[新标签]<br>
+			例如：docker tag nginx:latest nginx:web<br>
+			
+			例如：docker images | grep nginx<br>
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    那么怎么删除镜像呢，赏你休息一分钟吧！<br>
+			
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    <img src="./img/7.gif" alt="">
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		   格式：<br>
+		   docker rmi 仓库名称:标签				#当一个镜像有多个标签时，只是删除其中指定的标签<br><br>
+		   或者<br><br>
+		   docker rmi 镜像ID号						#会彻底删除该镜像<br><br>
+		   
+		   注意：如果该镜像已经被容器使用，正确的做法是先删除依赖该镜像的所有容器，再去删除镜像。<br><br>
+		   
+		  例如： docker rmi nginx:web
+
+		</div>
+		
+		
+		
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #存出镜像：将镜像保存成为本地文件<br />
+			格式：docker save -o 存储文件名 存储的镜像<br /><br />
+			docker save -o nginx nginx:latest		<br />	 #存出镜像命名为nginx存在当前目录下<br />
+			ls -lh<br /><br />
+			
+			#载入镜像：将镜像文件导入到镜像库中<br />
+			格式：<br />
+			docker load < 存出的文件<br /><br />
+			或者<br /><br />
+			docker load -i 存出的文件<br /><br />
+			
+			docker load < nginx<br />
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    我写的也好累啊<br>
+			<img src="./img/20.gif" alt="">
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    别累
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			谢谢，你是会安慰人的。下面讲讲Docker 容器操作。
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #容器创建：就是将镜像加载到容器的过程。<br /><br />
+			格式：docker create [选项] 镜像<br />
+			常用选项：<br />
+			-i：让容器开启标准输入接受用户输入命令<br />
+			-t：让 Docker 分配一个伪终端 tty<br />
+			-it :合起来实现和容器交互的作用，运行一个交互式会话 shell <br /><br />
+			
+			例如：docker create -it nginx:latest /bin/bash
+			
+		</div>
+		
+		
+		
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #启动容器<br />
+			格式：docker start 容器的ID/名称<br />
+			例如：docker start 8b0a7be0ff58<br /><br />
+			docker ps -a<br />
+			#-a 选项可以显示所有的容器<br />
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #创建并启动容器<br />
+		    可以直接执行 docker run 命令， 等同于先执行 docker create 命令，再执行 docker start 命令。<br />
+		    注意：容器是一个与其中运行的 shell 命令/进程共存亡的终端，命令/进程运行容器运行， 命令/进程结束容器退出。<br />
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    哇哦，学费了<br>
+			<img src="./img/26.jpg" alt="">
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		   #终止容器运行<br />
+		   格式：docker stop 容器的ID/名称<br />
+		   例如：docker stop 2592d3fad0fb<br /><br />
+		   
+		   docker ps -a<br />
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		   #容器的进入<br />
+		   需要进入容器进行命令操作时，可以使用 docker exec 命令进入运行着的容器。<br />
+		   格式：docker exec -it 容器ID/名称 /bin/bash<br />
+		   -i 选项表示让容器的输入保持打开；<br />
+		   -t 选项表示让 Docker 分配一个伪终端。<br /><br />
+		   
+		   docker start 2592d3fad0fb					#进入容器前，确保容器正在运行<br />
+		   docker exec -it 2592d3fad0fb /bin/bash<br />
+		  
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #复制到容器中<br />
+			echo abc123 > ~/test.txt<br /><br />
+			docker cp ~/test.txt 2592d3fad0fb:/opt/<br />
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #从容器复制文件到主机<br /><br />
+			docker cp 2592d3fad0fb:/opt/
+			test.txt ~/abc123.txt
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		    <img src="./img/32.gif" alt="">
+		</div>
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    不仅学会了命令，还学了闪电五连鞭！
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		   别急，学完下面的命令，马上就可以学会真正的闪电五连鞭！
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		    #容器的导出与导入<br />
+			#导出格式：docker export 容器ID/名称 > 文件名<br /><br />
+			docker export 8c14058479c4 > centos7.tar<br /><br />
+			
+			docker export -o centos7.tar 8c14058479c4<br /><br />
+			#导入格式：cat 文件名 | docker import – 镜像名称:标签<br /><br />
+			cat centos7.tar | docker import - centos7:test			<br />#导入后会生成镜像，但不会创建容器<br />
+			
+			docker import centos7.tar -- centos7:test<br />
+
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+		   #删除容器<br />
+		   格式：docker rm [-f] 容器ID/名称<br /><br />
+		   docker stop 2592d3fad0fb<br /><br />
+		   docker rm 2592d3fad0fb				#删除已经终止状态的容器<br /><br />
+		   
+		   docker rm -f 2592d3fad0fb			#强制删除正在运行的容器<br />
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+		    好了，结束！回去别忘了复习，认真看吧！
+			<img src="img/33.gif"/>
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    <img src="./img/28.gif" alt="">
+		</div>
+        
+       
+		
+    </div>
+	<hr/>
+		<hr/>
+</body>
+</html>
