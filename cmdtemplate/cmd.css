@@ -1,10 +1,42 @@
 div{
     margin: auto;
     width: 100%;
+    height: auto;
 }
-.chatbox{
-    width: 300px;
+#chatbox{
+    margin-right: 5px;
 }
+.thumbnail {
+    width: 95%;
+    /* height: 100px; */
+    /* overflow: hidden; */
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+.thumbnail .cmdheader button{
+    display: none;
+}
+.thumbnail .cmdbody p{
+    display: none;
+}
+
+.expanded {
+    width: 800px;
+    position: fixed; /* 或 position: absolute; */
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    /* height: 400px; */
+}
+.expanded .cmdheader button{
+    display: inline-block;
+}
+.expanded .cmdbody p{
+    display: block;
+}
+
 .box{
     margin: 10px;
 }
@@ -51,7 +83,7 @@ p{
     content: " >"; 
 }
 
-.annotation_result{
+/* .annotation_result{
     color: #cacaca;
     padding: 5px 0px 5px 15px;
 }
@@ -60,7 +92,7 @@ p{
 }
 .annotation::after {
     annotation_result: ""; 
-}
+} */
 
 .code{
     color: #fff;

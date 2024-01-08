@@ -27,3 +27,7 @@ document.getElementById("copyButton").addEventListener("click", function () {
     // 提示用户复制成功
     alert("已复制到剪切板");
 });
+
+document.getElementById('chatbox').addEventListener('click', function() {
+    this.classList.toggle('expanded');
+});
