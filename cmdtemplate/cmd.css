@@ -1,5 +1,5 @@
 div{
-    margin: 0;
+    margin: auto;
     width: 100%;
 }
 .chatbox{
@@ -49,6 +49,17 @@ p{
 }
 .annotation::after {
     content: " >"; 
+}
+
+.annotation_result{
+    color: #cacaca;
+    padding: 5px 0px 5px 15px;
+}
+.annotation_result::before {
+    content: ""; 
+}
+.annotation::after {
+    annotation_result: ""; 
 }
 
 .code{
