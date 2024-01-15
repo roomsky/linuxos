@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../cmdtemplate/cmd.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+            position: relative;
+            overflow: visible;
+        }
+
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+	<link rel="stylesheet" href="../cmdtemplate/cmd.css">
+</head>
+<body>
+    <div class="chat-container">
+      
+        <div class="message person-b">
+            <div class="name">白白</div>
+            矮油!2024年想不想学新的知识呢！
+            <img src="./img/2024.jpg" alt="">
+        </div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    学完我就可以像科比一样强吗！
+			<img	src="img/牢大.jpg">
+		</div>
+		
+        <div class="message person-b">
+            <div class="name">白白</div>
+			你把整本书都学会了或许才能比得上他
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            那么要学什么呢，快开始吧！
+			<img src="./img/失败的man.jpg">
+        </div>
+		
+		
+		
+		
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			好的，失败的man，咱学学办公常用到的tmux。
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			tmux是一个终端复用器（terminal multiplexer）,当tmux在工作中,即时关掉Secure CRT的连接窗口，再次连接，进入tmux的会话我们仍可以继续工作。
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			会话与进程<br>
+			命令行的典型使用方法是，打开一个终端窗口(terminal window,以下简称"窗口")，在里面输入命令。用户与计算机的这种临时交互，称为一次"会话"(session)。
+			<br>
+			会话的一个重要特点是，窗口与其中启动的进程是连在一起的。打开窗口，会话开始；关闭窗口，会话结束，会话内部的进程也会随之终止，不管有没有运行完.
+		<br></div>
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    了解~
+			<img src="./img/t4.gif" alt="">
+			
+		</div>
+		 <div class="message person-b">
+		            <div class="name">白白</div>
+		           
+		如何安装tmux？<br><br>
+		
+		            <div id="chatbox" class="thumbnail">
+		                <div class="box">
+		                    <div class="cmdheader">
+		                        <p class="header-elements">cmd</p>
+		                        <button id="copyButton" class="header-elements">
+		                            <img src="../cmdtemplate/clipboard-regular.svg" alt="copyButton">
+		                            <span>Copy code</span>
+		                        </button>
+		                    </div>
+		                    <div class="cmdbody">
+		                        <p class="annotation">
+		                            安装tmux
+		
+		
+		                            </p>
+		                            <p class="code">
+		                             
+		
+		
+		                            </p>
+		                            <p class="annotation_result">
+		                               # Ubuntu 或 Debian<br>
+					$ sudo apt-get install tmux<br><br>
+					# CentOS 或 Fedora<br>
+					$ sudo yum install tmux<br><br>
+					# Mac<br>
+					$ brew install tmux<br>
+		
+		
+		
+		                            </p>
+		                    </div>
+		                </div>
+		            </div>
+		
+		
+		
+		        </div>
+				
+				
+				
+				
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+			 启动和退出tmux<br><br>
+			 
+			 输入tmux命令，会进入tmux窗口<br>
+			 按下ctrl+b或者输入exit命令，就可以退出tmux窗口(会话结束)<br>
+			 
+		</div>
+		 
+		 
+		 
+		<div class="message person-b">
+		    <div class="name"></div>
+			 tmux快捷键的使用<br><br>
+			 
+			  tmux窗口有大量的快捷键.所有快捷键都要通过前缀键唤起.默认前缀键是Ctrl+b,即先按下Ctrl+b快捷键才会生效<br>
+			 
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    看上去不难啊，都想试试了
+			<img src="./img/640 (1).jpg" alt="">
+			
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			一听就会，一做就废。建议你吃点这个。
+			<img src="../表情包/t6.jpg"/>
+			下面讲讲使用
+		</div>
+		 
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+			创建会话	<br><br>
+			  启动tmux窗口,编号是0,第二个窗口的编号是1,以此类推<br>
+			  tmux<br><br>
+			     指定名称创建会话<br>
+				 tmux new -s < session-name > <br>
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			退出当前会话<br><br>
+			 在 tmux 窗口中，按下Ctrl+b d或者输入：tmux detach命令，就会将当前会话窗退出<br>
+			 tmux detach<br>
+			 上面命令执行后，就会退出当前 tmux 窗口，但是会话和里面的进程仍然在后台运行。<br><br>
+
+			 tmux ls命令可以查看当前所有的 tmux 会话。<br>
+			 tmux ls<br>
+			 # or<br>
+			 tmux list-session<br>
+
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			进入tmux会话<br>
+			tmux attach命令用于重新接入某个已存在的会话。<br><br>
+
+			# 使用会话编号<br>
+			tmux attach -t 0    # 0 是会话名称<br>
+			#or<br>
+			tmux a -t 0<br><br>
+			# 使用会话名称<br>
+			tmux attach -t < session-name ><br>
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    那怎么关闭会话呢？用kill吗？
+			<img src="img/12.gif"/>
+			
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			哎哟不错，有这种思维意识了，的确要用到kill，下面细说。
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			在tmux中，删除（关闭）一个会话（session）通常意味着结束该会话。这可以通过几种方式实现：<br><br>
+			1. 在会话内部关闭<br>
+			如果你当前在一个tmux会话中，可以通过以下步骤来关闭它：<br><br>
+			
+			按下 Ctrl + B（这是tmux的默认前缀键），然后按下 & 键。<br>
+			tmux会询问你是否真的要关闭这个窗口。确认后，会话将被关闭。
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			2. 从另一个会话关闭<br>
+			如果你想从另一个tmux会话或者普通终端关闭一个tmux会话，可以使用以下命令：<br>
+			tmux kill-session -t session-name<br>
+			其中 session-name 是你想关闭的会话名称。如果你不知道会话名称，可以先用 tmux list-sessions 来列出所有会话。<br>
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name"></div>
+			3. 关闭所有会话<br>
+			如果你想关闭所有tmux会话，可以使用：<br>
+			tmux kill-server<br>
+			这个命令会关闭tmux服务器，从而关闭所有会话。注意，这个命令将不会有确认提示，所有会话将立即关闭。 <br>
+		</div>
+		
+		
+			
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			但是！！！
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    但是什么？！！
+			<img src="./img/丽丽2.gif">
+			
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			但是！！！你先要确保你关闭的是啥！在tmux中，会话（session）、窗口（window）和面板（pane）是三个不同的概念。确保你要关闭的是会话，而不是窗口或面板。
+			<br><br>
+			如果你不确定，总是可以先用 tmux list-sessions 查看现有会话，再进行关闭操作。
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    学到啦！
+			<img src="../表情包/丽丽5.jpg">
+			
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			切换会话<br>
+			tmux switch命令用于切换会话<br><br>
+			
+			# 使用会话编号<br>
+			tmux switch -t 0<br>
+			# 使用会话名称<br>
+			tmux switch -t < session-name >
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+			重命名会话<br>
+			 tmux rename-session命令用于重命名会话<br><br>
+			 
+			 
+			  把0号重命名<br>
+			 tmux rename-session -t 0 < new-name >
+
+		</div>
+		
+		
+		
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		    <img src="img/3.gif"/>
+			
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			但是！！！
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		   又咋了！？
+			
+		</div>
+      <div class="message person-b">
+          <div class="name">白白</div>
+      	没事，吓你一下。嘻嘻讲完了。
+		<img src="img/23.jpg"/>
+      </div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+		   <img src="img/640 (2).jpg"/>
+			
+		</div>
+		
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			最后再给你一些常用的快捷键
+				<img src="img/QQ截图20240104164641.png"/>
+		</div>
+		<div class="message person-b">
+		    <div class="name"></div>
+		记得好好学，孔子曰：学而不思则...
+		</div>
+		<div class="message person-a">
+		    <div class="name">明明</div>
+			我知道我知道！！
+		   <img src="img/孔子.jpg"/>
+			
+		</div>
+		<div class="message person-b">
+		    <div class="name">白白</div>
+			...老子曰：孔子说滴对！
+		</div>
+		
+    </div>
+	<hr/>
+			<hr/>
+			<script src="../cmdtemplate/cmd.js"></script>
+	</body>
+	</html>
