@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <link rel="stylesheet" href="../cmdtemplate/cmd.css">
     <style>
         body {
@@ -55,8 +56,8 @@
 	<link rel="stylesheet" href="../cmdtemplate/cmd.css">
 </head>
 <body>
-    <div class="chat-container">
-      
+    <div class="chat-container" id="app">
+        <div class="overlay" @click="claerAll" v-if="cmd1isClicked"></div>
         <div class="message person-b">
             <div class="name">白白</div>
             矮油!2024年想不想学新的知识呢！
@@ -105,12 +106,12 @@
 			<img src="./img/t4.gif" alt="">
 			
 		</div>
-		 <div class="message person-b">
+		<div class="message person-b">
 		            <div class="name">白白</div>
 		           
-		如何安装tmux？<br><br>
+			如何安装tmux？<br><br>
 		
-		            <div id="chatbox" class="thumbnail">
+		            <!-- <div id="chatbox" class="thumbnail">
 		                <div class="box">
 		                    <div class="cmdheader">
 		                        <p class="header-elements">cmd</p>
@@ -143,11 +144,40 @@
 		                            </p>
 		                    </div>
 		                </div>
-		            </div>
+		            </div> -->
 		
+					<div class="thumbnail" @click="cmd1isClicked = true">
+						<div class="box">
+							<div class="cmdheader">
+								<p class="header-elements">cmd</p>
+							</div>
+							<div class="cmdbody">
+								<p class="annotation">
+									Click for details
+								</p>
+							</div>
+						</div>
+					</div>
+			
+					<transition name="fade" mode="out-in">
+						<div id="cmd1" class="cmdcontainer" v-if="cmd1isClicked">
+							<div class="cmdheader">
+								<p class="header-elements">cmd</p>
+								<button id="copyButton" class="header-elements" @click=copyCode("codeList1")>
+									<img src="../cmdtemplate/clipboard-regular.svg" alt="copyButton">
+									<span>Copy code</span>
+								</button>
+							</div>
+							<div class="cmdbody">
+								<template v-for="(item, index) in combinedList1">
+									<p :class="item.type" v-if="item.type === 'annotation'">{{ item.content }}</p>
+									<p :class="item.type" ref="codeList1" v-else>{{ item.content }}</p>
+								</template>
+							</div>
+						</div>                
+					</transition>
 		
-		
-		        </div>
+		</div>
 				
 				
 				
@@ -349,6 +379,6 @@
     </div>
 	<hr/>
 			<hr/>
-			<script src="../cmdtemplate/cmd.js"></script>
+			<script src="cmd.js"></script>
 	</body>
 	</html>
