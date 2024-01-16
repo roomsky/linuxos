@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../cmdtemplate/cmd.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            max-width: 70%;
+            position: relative;
+            overflow: visible;
+        }
+
+        .person-a {
+            background-color: #bdecb6;
+            text-align: left;
+            float: left;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .person-b {
+            background-color: #e4e4e4;
+            text-align: left;
+            float: right;
+            min-width: 205px; /* 添加最小宽度 */
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .message img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    </style>
+	<link rel="stylesheet" href="../cmdtemplate/cmd.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message person-a">
+            <div class="name">明明</div>
+            啊啊啊啊啊啊啊
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            咋啦
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+            啥是tcpdump？我都没听说过！快给我讲讲！<br>
+			<img src="./img/t2.gif"/>
+        </div>
+        <div class="message person-b">
+            <div class="name">白白</div>
+            一个抓包工具而已...
+        </div>
+        <div class="message person-a">
+            <div class="name">明明</div>
+           ...<br>
+		   那 ！你 ! 倒 ! 是 ! 继 ！续 ！ 讲 ! 啊！
+		   <img	src="./img/a3.gif">
+        </div>
+       
+		 <div class="message person-b">
+			 <div class="name">白白</div>
+			 大娘，别打，别打，我讲..
+		 </div>
+		 <div class="message person-b">
+		 			 <div class="name"></div>
+		 			 tcpdump是一个抓包工具，用于实时捕获和分析网络流量。它通常在Unix和类Unix操作系统上可用，包括Linux。<br>
+		 			 <br>
+		 			 tcpdump能够捕获流经网络接口的数据包，并显示或保存它们以供进一步分析。它提供有关每个数据包的详细信息，包括源IP地址、目标IP地址、使用的协议、数据包时间戳、数据包大小等等。
+		 			 <br><br>
+		 			 tcpdump通过使用各种过滤器，以捕获特定类型的流量，例如仅捕获特定IP地址、端口或协议的数据包。
+		 			 
+		 </div>
+		 <div class="message person-b">
+		 			 <div class="name"></div>
+		 			 那你知道为什么我们会用到tcpdump吗？
+		 </div>
+		 
+		 <div class="message person-a">
+		 			<div class="name">明明</div>
+		 			你说呢？（手握利刃）
+					<img src="img/t1.jpg"/>
+		 		</div>
+		 <div class="message person-b">
+		 			 <div class="name">白白</div>
+		 			 嘿嘿，您别冲动，下面就是它的用处：<br>	
+					 调试和故障排查：通过捕获和查看实时的网络数据包流量，来观察和分析数据包，找到故障所在；<br><br>
+					 
+					 网络流量分析：通过捕获网络数据包，分析数据包的详细信息，来理解网络通信模式、检测潜在安全问题或优化网络性能。<br><br>
+					 
+					 安全监测和入侵检测：捕获和分析数据包，来检查网络中的异常流量、恶意软件传播、潜在的攻击尝试等；<br><br>
+					 
+					 协议分析和开发：Tcpdump提供了深入了解网络协议工作原理和通信模式的机会。
+					 
+		 </div>
+		 <div class="message person-b">
+		 			 <div class="name"></div>
+		 			tcpdump在哪里？<br><br>
+					
+					首先，安装tcpdump，或者更新版本<br>
+					yum install -y tcpdump <br><br>
+					
+					查看详细信息<br>
+					rpm -qc tcpdump <br>
+					<br>
+					查看目录<br>
+					which tcpdump 
+
+		 </div>
+		 
+		 <div class="message person-a">
+		 			<div class="name">明明</div>
+		 			这还差不多，那我问你：我该怎么用tcpdump？
+					<img src="img/2 (3).jpg"/>
+		 		</div>
+		 <div class="message person-b">
+		 			 <div class="name">白白</div>
+		 			 1.命令格式<br><br>
+					 
+					 #命令格式<br>
+					 tcpdump    option   proto     dir         type<br>
+					            选项      协议      数据的方向    抓取的数据类型<br><br>
+					 
+					 ##proto（协议）##    <br>
+					 1. tcp  udp   icmp<br>
+					 2. ip   ipv6<br>
+					 3. arp<br><br>
+					 
+					 
+					 ##dir（方向）##<br>
+					 1. src<br>
+					 2. dst<br>
+					 3. src and   dst<br><br>
+					 
+					 #type（类型）##<br>
+					 1. host  主机  <br> 
+					 2. net  网段<br>
+					 3. port  端口  <br>   
+					 4. port range  端口范围
+					 
+
+		 </div>
+		 <div class="message person-b">
+		 			 <div class="name"></div>
+		 			 tcpdump [-adeflnNOpqStvx][-c<数据包数目>][-dd][-ddd][-F<表达文件>][-i<网络界面>][-r<数据包文件>][-s<数据包大小>][-tt][-T<数据包类型>][-vv][-w<数据包文件>][输出数据栏位]<br>
+		 			 <br>
+		 			 #选项（option）#<br>
+		 			 -a 尝试将网络和广播地址转换成名称。<br>
+		 			 -c<数据包数目> 收到指定的数据包数目后，就停止进行倾倒操作。<br>
+		 			 -d 把编译过的数据包编码转换成可阅读的格式，并倾倒到标准输出。<br>
+		 			 -dd 把编译过的数据包编码转换成C语言的格式，并倾倒到标准输出。<br>
+		 			 -ddd 把编译过的数据包编码转换成十进制数字的格式，并倾倒到标准输出。<br>
+		 			 -e 在每列倾倒资料上显示连接层级的文件头。<br>
+		 			 -f 用数字显示网际网络地址。<br>
+		 			 -F<表达文件> 指定内含表达方式的文件。<br>
+		 			 -i<网络接口> 使用指定的网络截面送出数据包。<br>
+		 			 -l 使用标准输出列的缓冲区。<br>
+		 			 -n 不把主机的网络地址转换成名字。<br>
+		 			 -N 不列出域名。<br>
+		 			 -O 不将数据包编码最佳化。<br>
+		 			 -p 不让网络界面进入混杂模式。<br>
+		 			 -q 快速输出，仅列出少数的传输协议信息。<br>
+		 			 -r<数据包文件> 从指定的文件读取数据包数据。<br>
+		 			 -s<数据包大小> 设置每个数据包的大小。<br>
+		 			 -S 用绝对而非相对数值列出TCP关联数。<br>
+		 			 -t 在每列倾倒资料上不显示时间戳记。<br>
+		 			 -tt 在每列倾倒资料上显示未经格式化的时间戳记。<br>
+		 			 -T<数据包类型> 强制将表达方式所指定的数据包转译成设置的数据包类型。<br>
+		 			 -v 详细显示指令执行过程。<br>
+		 			 -vv 更详细显示指令执行过程。<br>
+		 			 -x 用十六进制字码列出数据包资料。<br>
+		 			 -w<数据包文件> 把数据包数据写入指定的文件。<br>
+
+		 </div>
+		 
+		 <div class="message person-a">
+		 			<div class="name">明明</div>
+		 			这么多？
+					<img src="img/a1.jpg"/>
+		 		</div>
+		 
+		 <div class="message person-b">
+		 			 <div class="name">白白</div>
+		 			 不多也不少，懵逼不伤脑。下面讲常用选项，好好学！
+		 </div>
+		 <div class="message person-b">
+		 			 <div class="name"></div>
+		 			 1.对网络接口抓包 -i<br>
+					 <img src="img/j1.png"/>
+					 第一部分<br>
+					 12:59:42.256994<br>
+					 #数据包时间 时：分：秒.毫秒<br><br>
+					
+					第二部分<br>
+					IP 192.168.2.1.58879 > byyb.ssh<br>
+					#详解#<br>
+					IP 192.168.2.1.58879<br>
+					#发送方IP地址.端口号  ip地址：192.168.2.1     端口号：47496 <br>    
+					
+					# >表示数据流向<br>
+					byyb.ssh<br>
+					#主机名.协议    主机名：byyd     协议：ssh<br><br>
+					
+					第三部分<br>
+					 Flags [P.], seq 37:73, ack 417040, win 3817, length 36<br><br>
+					
+					#详解#<br>
+					Flags [P.]: TCP 数据包的标志字段。"[P.]" 表示该数据包携带了数据（Push 标志），并且是由发送方发起的。<br>
+					
+					seq 37:73: 该数据包的序列号范围。这个范围从序列号 37 开始，到序列号 73 结束。<br>
+					
+					ack 417040: 确认号（ACK）。表示发送方期望接收到的下一个字节的序列号。<br>
+					
+					win 3817: 窗口大小（Window Size），表示接收方的可用缓冲区大小。<br>
+					
+					length 36: 该数据包的长度，单位为字节。<br>
+
+		 </div>
+		 <div class="message person-b">
+		 			 <div class="name"></div>
+		 			 2.指定收取数据包的数量 -c<br>
+					 tcpdump -i ens33 -c 2 #只抓两个数据包
+
+		 </div>
+		<div class="message person-b">
+					 <div class="name"></div>
+					 3.不把ip转换成域名，直接显示ip -n<br>
+					 tcpdump -i ens33 -n #直接显示ip地址
+
+		
+		</div>
+		<div class="message person-b">
+					 <div class="name"></div>
+					4.显示ip和端口号 -nn <br>
+					tcpdump -i ens33 -nn
+
+		</div>
+		<div class="message person-b">
+					 <div class="name"></div>
+					5. 在每行的输出中，不显示时间 -t<br>
+					tcpdump -i ens33 -t<br><br>
+					
+					再加一个t<br>
+					tcpdump -i ens33 -tt #显示一个时间戳<br><br>
+					
+					再再加一个t<br>
+					tcpdump -i ens33 -ttt #每行之间的时间间隔
+
+
+		</div>
+		
+		<div class="message person-a">
+						<div class="name">明明</div>
+						居然还有这种操作，那再来一个t呢？
+						<img src="img/1.jpg"/>
+					</div>
+		
+		<div class="message person-b">
+					 <div class="name">白白</div>
+					 没了，那是不可能滴！还真有<br>
+					 tcpdump -i ens33 -tttt #显示更详细的时间
+
+		
+		
+		</div>
+		
+		<div class="message person-b">
+		 			 <div class="name"></div>
+		 			6. 产生详细的输出 -v<br>
+					 tcpdump -i ens33 -v<br>
+					 #v越多，显示的信息越详细<br>
+					 tcpdump -i ens33 -vv<br>
+					 tcpdump -i ens33 -vvv<br>	
+
+		
+		 </div>
+		<div class="message person-b">
+					 <div class="name"></div>
+					 7.指定数据包的大小 -s<br>
+					 tcpdump -i ens33  -s 50 #指定数据包的大小为50
+
+		
+		
+		</div>
+		<div class="message person-b">
+					 <div class="name"></div>
+					8.显示所有可用的网络接口 -D<br>
+					tcpdump -D
+
+		
+		</div>
+		
+		<div class="message person-b">
+					 <div class="name"></div>
+					9.将捕获信息保存到文件中，且不分析核打印在屏幕上 -w<br>
+					tcpdump -i any -w test.cap    
+					#将文件后缀改成cap 或者pcap形式可以直接用wireshark打开
+
+		
+		
+		</div>
+		
+	<div class="message person-a">
+				<div class="name">明明</div>
+				啊啊终于讲完了，大脑要萎缩了
+				<img src="img/丽丽3.jpg"/>
+			</div>
+			
+			
+	<div class="message person-b">
+				 <div class="name">白白</div>
+				谁说的，还有过滤规则呢。
+				<img src="img/24.jpg"/>
+				</div>
+	
+		<div class="message person-b">
+					 <div class="name"></div>
+					1.基于ip地址/网段过滤<br>
+					host选项<br><br>
+					
+					主机2  ping   主机1 <br>
+					
+					[root@localhost data]#tcpdump -i ens33  host 192.168.91.102 <br>
+					#只过滤 和 192.168.91.100有关的流量<br>
+					<img src="./img/j2.png"/>
+
+					</div>
+			<div class="message person-b">
+						 <div class="name"></div>
+						dst 选项 目的地址<br>
+						src 选项 源地址<br><br>
+						tcpdump -i ens33  dst 192.168.2.102 #过滤出目的地址为192.168.2.102的数据流<br>
+						tcpdump -i ens33  src 192.168.2.100#过滤出源地址为192.168.2.100的数据流<br>
+
+						</div>
+			<div class="message person-b">
+						 <div class="name"></div>
+						net 选项 ----过滤网段<br><br>
+						tcpdump -i ens33 net 192.168.2.0/24  #过滤192.168.2.0网段的<br><br>
+						
+						##控制方向##<br>
+						tcpdump -i ens33  src net 192.168.2.0/24 #目的网段<br>
+						
+						tcpdump -i ens33  dst net 192.168.2.0/24#源网段<br>
+
+						</div>
+						<div class="message person-b">
+									 <div class="name"></div>
+									<img src="img/t4.gif"/>
+						
+									</div>	
+									<div class="message person-a">
+												<div class="name">明明</div>
+												给我难笑了
+												<img src="./img/丽丽5.jpg"/>
+											</div>
+											
+											
+			<div class="message person-b">
+				
+						 <div class="name">白白</div>
+						 嘻嘻不是你要学tcpdump的吗？<br><br>
+						2.基于端口过滤<br><br>
+						port 端口号<br>
+						tcpdump -i ens33 port 80 #过滤80端口的数据包<br>
+
+						</div>			
+	
+	<div class="message person-b">
+						 <div class="name"></div>
+						or选项 ，用于多个不连续端口<br>
+						port x or port y ---- 端口x 或 端口y<br><br>
+						tcpdump -i ens33  src port 80 or port 22<br> #过滤出源地址的端口为80或22<br><br>
+						tcpdump -i ens33  dst port 80 or port 22 <br>#过滤出目的地址端口为80或22的<br>
+
+
+						</div>	
+			
+		<div class="message person-b">
+							 <div class="name"></div>
+							portrange 选项 ，用于指定端口范围<br>
+							
+							portrange x-y---- 端口范围 x到 y之间<br><br>
+							
+							#tcpdump -i ens33 portrange 80-8080
+							<br>端口范围 80 到 8080 之间<br><br>
+							
+							#可结合src dst<br>
+							tcpdump -i ens33  src portrange 80-8080 <br> #源地址的端口范围 80-8080<br>
+							
+							tcpdump -i ens33  dst portrange 80-8080 <br>#目的地址的端口范围为80-8080<br>
+
+		
+							</div>	
+		<div class="message person-b">
+							 <div class="name"></div>
+							3.基于协议<br>
+							协议种类：ip arp icmp tcp udp<br><br>
+							
+							ping  www.baidu.com<br>
+							
+							tcpdump -i ens33 icmp #抓取ens33接口的数据包，过滤出基于icmp协议的包
+
+		
+							</div>							
+			
+			
+			
+			
+			
+			<div class="message person-a">
+						<div class="name">明明</div>
+						很好，讲了这么多，我没怎么听懂，有没有实例我康康。
+				
+						<img src="img/2.jpg"/>
+					</div>
+					
+			<div class="message person-b">
+								 <div class="name">白白</div>
+							
+							
+							问：如何抓取源地址为192.168.2.100，目的地址192.168.2.102的数据流？<br>
+								</div>				
+					
+			<div class="message person-b">
+								 <div class="name"></div>
+							思路：抓取范围地址，用and链接<br><br>
+							tcpdump -i ens33 src 192.168.2.100 and  dst 192.168.2.102<br>
+							#and 很关键<br>
+							<img src="./img/j3.png"/>
+								</div>				
+					<div class="message person-b">
+										 <div class="name"></div>
+									其实你动手练练也就会了，加油！
+										</div>				
+					
+					
+					
+					<div class="message person-a">
+								<div class="name">明明</div>
+								
+								<img src="./img/13.jpg" />
+							</div>
+							
+							
+							
+	<hr/>
+		<hr/>
+		<script src="../cmdtemplate/cmd.js"></script>
+</body>
+</html>
